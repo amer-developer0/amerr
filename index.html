@@ -1,0 +1,416 @@
+<!-- =================== -->
+<!-- index.html -->
+<!-- =================== -->
+
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Amer Developer | Full-Stack Web Developer & AI-Powered Solution Builder" />
+  <meta name="author" content="Amer Developer" />
+  <meta name="theme-color" content="#000033" />
+  <meta name="robots" content="index, follow" />
+  <!-- Open Graph Meta Tags for SEO & Social Sharing -->
+  <meta property="og:title" content="Amer Developer | Innovative Software Solutions" />
+  <meta property="og:description" content="I build digital solutions that help you appear professionally and effectively in the digital market." />
+  <meta property="og:image" content="assets/images/logo.png" />
+  <!-- <meta property="og:url" content="https://yourdomain.com  " /> llll//////////////// -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <title>Amer Developer | Building Digital Futures with Code & Creativity</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="preload" as="image" href="assets/images/logo.png" />
+
+  <!-- Alternate languages -->
+  <link rel="alternate" hreflang="en" href="https://yourdomain.com/index.html  " />
+  <link rel="alternate" hreflang="ar" href="https://yourdomain.com/index-en.html  " />
+  <link rel="alternate" hreflang="de" href="https://yourdomain.com/index-de.html  " />
+  <link rel="alternate" hreflang="fr" href="https://yourdomain.com/index.html  " />
+  <link rel="alternate" hreflang="es" href="https://yourdomain.com/index-en.html  " />
+  <link rel="alternate" hreflang="ru" href="https://yourdomain.com/index-de.html  " />
+  <link rel="alternate" hreflang="pt" href="https://yourdomain.com/index-de.html  " />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css  " crossorigin="anonymous" />
+  <!-- External CSS -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/theme-light.css" />
+  <link rel="stylesheet" href="assets/css/theme-dark.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+  <link id="main-css" rel="stylesheet" href="assets/css/main-ar.css">
+
+</head>
+
+<body>
+  <!-- Skip to content link for accessibility -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Header & Navigation -->
+  <header class="main-header" role="banner">
+    <div class="logo" aria-label="Amer Developer Logo">
+      <img class="logo-header" src="assets/images/logo.png" alt="Amer Developer" loading="eager" />
+    </div>
+
+    <nav class="main-nav" aria-label="Main Navigation">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#home" class="nav-link active" data-key="nav_home">Home</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link" data-key="nav_about">About</a></li>
+        <li class="nav-item"><a href="#services" class="nav-link" data-key="nav_services">Services</a></li>
+        <li class="nav-item"><a href="#skills" class="nav-link" data-key="nav_skills">Skills</a></li>
+        <li class="nav-item"><a href="#tools" class="nav-link" data-key="nav_tools">Tools</a></li>
+        <li class="nav-item"><a href="#projects" class="nav-link" data-key="nav_projects">Projects</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link" data-key="nav_contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Dark/Light Mode Toggle Button -->
+<button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
+  <i class="fas fa-sun" id="theme-icon"></i>
+</button>
+    <!-- Order Service Button (hidden by default) -->
+    <button id="order-service-btn" class="btn-btn-order">
+      <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+      <span data-key="btn_order_service">Order Service</span>
+    </button>
+  </header>
+
+  <!-- Main content wrapper -->
+  <main id="main-content" tabindex="-1">
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-content-wrapper">
+        <div class="hero-text">
+          <h1 class="hero-title" data-animation="slide-up">
+            <span class="highlight" data-key="hero_hello_im">Hello, I'm</span> <strong id="hero-name" >Amer</strong>
+          </h1>
+          <h2 class="hero-subtitle" data-animation="slide-up" style="animation-delay: 0.2s;">
+            <span class="typing-text" id="typing-text"></span>
+          </h2>
+          <p class="hero-paragraph" data-animation="fade-in" style="animation-delay: 0.4s;" data-key="hero_description">
+            I build digital solutions that help you appear professionally and effectively in the digital market.
+          </p>
+          <a href="#about" class="btn btn-primary" data-animation="slide-up" style="animation-delay: 0.6s;" data-key="btn_more_about_me">
+            More About Me <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <!-- Social Icons Below Button -->
+          <div class="social-icons-home" data-animation="fade-in" style="animation-delay: 0.8s;">
+            <a href="https://github.com/amer-developer0  " target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="fab fa-github fa-lg"></i>
+            </a>
+            <a href="https://www.instagram.com/amer_aeveloper?igsh=Z3pkOThsbzcydjF5" target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="fab fa-instagram fa-lg"></i>
+            </a>
+            <a href="  https://wa.me/201280787721  " target="_blank" rel="noopener" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp fa-lg"></i>
+            </a>
+          </div>
+        </div>
+        <div class="hero-avatar" data-animation="zoom-in" style="animation-delay: 0.8s;">
+          <img src="assets/images/logo.png" alt="Amer Developer Portrait" class="avatar-img" loading="eager" width="320" height="320" />
+          <div class="glow-ring"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section" data-section="about">
+      <div class="container">
+        <h2 class="section-title" data-animation="slide-up" data-key="section_about_title">About Me</h2>
+        <div class="about-content" data-animation="fade-in">
+          <p id="about-text" data-key="about_paragraph_1">
+            Hello, I'm Amer from Egypt 🇪🇬, a web developer and programmer passionate about turning ideas into practical and effective digital solutions. I started my journey in programming through self-learning, and with every project I complete, I gain deeper experience and broader vision.
+          </p>
+          <p id="about-text-2" data-key="about_paragraph_2">
+            I specialize in designing and coding modern, responsive, and user-friendly websites, with a strong focus on user experience and fine details. I master HTML, CSS, and JavaScript to create professional interfaces, along with Python for building smart tools and applications.
+          </p>
+          <p id="about-text-3" data-key="about_paragraph_3">
+            I always strive to improve my skills and add new technologies to my toolkit, aiming to deliver the highest possible value to every client. I believe that the success of any project starts with a clear understanding of the goal and vision, then transforming them into a digital product that achieves the desired outcome efficiently and professionally.
+          </p>
+        </div>
+      </div>
+    </section>
+
+   <!-- Services Section -->
+<section id="services" class="section services-section" data-section="services">
+    <div class="container">
+      <h2 class="section-title" data-animation="slide-up" data-key="section_services_title">My Services</h2>
+      <p class="section-description" data-key="services_description" style="text-align: center; color: var(--text-gray); margin-bottom: var(--space-xl);">
+        I offer professional development services tailored to your needs.
+      </p>
+      <div id="services-actions" style="display: none; text-align: center; margin-bottom: var(--space-lg);">
+        <button id="cancel-selection" class="btn btn-secondary">
+          <i class="fas fa-times" aria-hidden="true"></i> <span data-key="btn_cancel_selection">Cancel</span>
+        </button>
+        <button id="confirm-order" class="btn btn-primary" style="margin-left: 1rem;">
+          <i class="fas fa-check" aria-hidden="true"></i> <span data-key="btn_confirm_order">Confirm</span>
+        </button>
+      </div>
+      <div class="services-grid" id="services-grid">
+        <div class="service-card"
+             data-message="I want to order a Landing Page service.">
+          <h3 data-key="service_landing_pages_title">Landing Pages</h3>
+          <p data-key="service_landing_pages_desc">Design professional landing pages to convert visitors into customers.</p>
+        </div>
+        <div class="service-card"
+             data-message="I want to order a Website development service.">
+          <h3 data-key="service_websites_title">Websites</h3>
+          <p data-key="service_websites_desc">Build responsive and modern websites tailored to your business needs.</p>
+        </div>
+        <div class="service-card"
+             data-message="I want to order a Python script service.">
+          <h3 data-key="service_python_scripts_title">Python Scripts</h3>
+          <p data-key="service_python_scripts_desc">Automate tasks and build custom tools using Python.</p>
+        </div>
+        <div class="service-card"
+          data-message="I want to order a Support & Maintenance service.">
+          <h3 data-key="service_support_title">Support & Maintenance</h3>
+          <p data-key="service_support_desc">Keep your website running smoothly with ongoing support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Skills Section -->
+<section id="skills" class="section skills-section" data-section="skills">
+    <div class="container">
+      <h2 class="section-title" data-animation="slide-up" data-key="section_skills_title">My Skills</h2>
+      <div class="skills-grid" id="skills-grid">
+        <div class="skill-card">
+          <h3 data-key="skill_html_title">HTML</h3>
+          <p data-key="skill_html_desc">هيكل صفحات الويب وصياغة المحتوى بطريقة منظمة.</p>
+          <div class="tooltip">الكامل: HyperText Markup Language<br>الوصف: هيكل صفحات الويب وصياغة المحتوى بطريقة منظمة.</div>
+        </div>
+        <div class="skill-card">
+          <h3 data-key="skill_css_title">CSS</h3>
+          <p data-key="skill_css_desc">تنسيق الصفحات وإضافة لمسات جمالية وتناسق في التصميم.</p>
+          <div class="tooltip">الكامل: Cascading Style Sheets<br>الوصف: تنسيق الصفحات وإضافة لمسات جمالية وتناسق في التصميم.</div>
+        </div>
+        <div class="skill-card">
+          <h3 data-key="skill_js_title">JavaScript</h3>
+          <p data-key="skill_js_desc">إضافة التفاعلية والحركة لجعل الموقع ديناميكي.</p>
+          <div class="tooltip">الكامل: JavaScript<br>الوصف: إضافة التفاعلية والحركة لجعل الموقع ديناميكي.</div>
+        </div>
+        <div class="skill-card">
+          <h3 data-key="skill_python_title">Python</h3>
+          <p data-key="skill_python_desc">برمجة التطبيقات وبناء أدوات ذكية وحلول عملية.</p>
+          <div class="tooltip">الكامل: Python<br>الوصف: برمجة التطبيقات وبناء أدوات ذكية وحلول عملية.</div>
+        </div>
+        <div class="skill-card">
+          <h3 data-key="skill_tailwind_title">Tailwind CSS</h3>
+          <p data-key="skill_tailwind_desc">تصميم واجهات احترافية بسرعة ومرونة باستخدام كود نظيف.</p>
+          <div class="tooltip">الكامل: Tailwind CSS<br>الوصف: تصميم واجهات احترافية بسرعة ومرونة باستخدام كود نظيف.</div>
+        </div>
+        <div class="skill-card">
+          <h3 data-key="skill_ai_tools_title">AI Tools</h3>
+          <p data-key="skill_ai_tools_desc">استغلال تقنيات الذكاء الاصطناعي لتحسين الأداء والإبداع.</p>
+          <div class="tooltip">الكامل: Artificial Intelligence Tools<br>الوصف: استغلال تقنيات الذكاء الاصطناعي لتحسين الأداء والإبداع.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Tools Section -->
+<section id="tools" class="section tools-section" data-section="tools">
+    <div class="container">
+      <h2 class="section-title" data-animation="slide-up" data-key="section_tools_title">My Tools</h2>
+      <div class="tools-grid" id="tools-grid">
+        <div class="tool-card">
+          <h3 data-key="tool_git_title">Git</h3>
+          <p data-key="tool_git_desc">إدارة وتتبع التغييرات في المشاريع البرمجية.</p>
+          <div class="tooltip">الكامل: Git<br>الوصف: إدارة وتتبع التغييرات في المشاريع البرمجية.</div>
+        </div>
+        <div class="tool-card">
+          <h3 data-key="tool_github_title">GitHub</h3>
+          <p data-key="tool_github_desc">حفظ ومشاركة الأكواد والعمل الجماعي بسهولة.</p>
+          <div class="tooltip">الكامل: GitHub<br>الوصف: حفظ ومشاركة الأكواد والعمل الجماعي بسهولة.</div>
+        </div>
+        <div class="tool-card">
+          <h3 data-key="tool_vscode_title">VS Code</h3>
+          <p data-key="tool_vscode_desc">محرر أكواد قوي ومرن يدعم جميع التقنيات.</p>
+          <div class="tooltip">الكامل: Visual Studio Code<br>الوصف: محرر أكواد قوي ومرن يدعم جميع التقنيات.</div>
+        </div>
+        <div class="tool-card">
+          <h3 data-key="tool_figma_title">Figma</h3>
+          <p data-key="tool_figma_desc">تصميم واجهات وتجربة مستخدم بشكل احترافي.</p>
+          <div class="tooltip">الكامل: Figma<br>الوصف: تصميم واجهات وتجربة مستخدم بشكل احترافي.</div>
+        </div>
+        <div class="tool-card">
+          <h3 data-key="tool_ai_tools_title">AI Tools</h3>
+          <p data-key="tool_ai_tools_desc">استخدام أدوات الذكاء الاصطناعي في تحسين العمل وتوفير الوقت.</p>
+          <div class="tooltip">الكامل: Artificial Intelligence Tools<br>الوصف: استخدام أدوات الذكاء الاصطناعي في تحسين العمل وتوفير الوقت.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- Projects Section -->
+<section id="projects" class="section projects-section" data-section="projects">
+    <div class="container">
+      <h2 class="section-title" data-animation="slide-up" id="projects-title" data-key="section_projects_title">Latest Projects</h2>
+      <div class="projects-grid" id="projects-grid">
+        <!-- المشروع 1 -->
+        <div class="project-card">
+          <div class="project-img-wrapper" style="position: relative;">
+            <img src="assets/images/project1.jpg" alt="E-commerce Website" class="project-img">
+            <button class="draggable-video-btn" data-video="assets/videos/project1.mp4" aria-label="Play video">
+              <i class="fas fa-play"></i>
+            </button>
+          </div>
+          <div class="project-content">
+            <h3 data-key="project_ecommerce_title">E-commerce Website</h3>
+            <p data-key="project_ecommerce_desc">A full-featured online store with cart, payments, and admin panel.</p>
+            <a href="#" class="btn" target="_blank" data-key="btn_view_project">View Project</a>
+          </div>
+        </div>
+
+  
+        <!-- المشروع 2 (بدون فيديو) -->
+        <div class="project-card">
+          <div class="project-img-wrapper" style="position: relative;">
+            <img src="assets/images/project2.jpg" alt="Portfolio Website" class="project-img">
+            <!-- بدون زر فيديو -->
+          </div>
+          <div class="project-content">
+            <h3 data-key="project_portfolio_title">Developer Portfolio</h3>
+            <p data-key="project_portfolio_desc">A responsive and animated personal portfolio website.</p>
+            <a href="#" class="btn" target="_blank" data-key="btn_view_project">View Project</a>
+          </div>
+        </div>
+      </div>
+      <div class="projects-empty" id="projects-empty" style="display: none; text-align: center; color: #CCCCCC;">
+        <p data-key="projects_empty_message">No projects added yet.</p>
+      </div>
+    </div>
+  </section>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section" data-section="contact">
+      <div class="container">
+        <h2 class="section-title" data-animation="slide-up" data-key="section_contact_title">Contact Me</h2>
+        <div class="contact-form-wrapper">
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/xdkdjqzo  " method="POST" novalidate>
+            <div class="form-group">
+              <label for="name" data-key="form_label_name">Your name</label>
+              <input type="text" id="name" name="name" required autocomplete="name" />
+              <div class="error-message" id="name-error"></div>
+            </div>
+            <div class="form-group">
+              <label for="email" data-key="form_label_email">Your email or phone number</label>
+              <input type="email" id="email" name="email" required autocomplete="email" />
+              <div class="error-message" id="email-error"></div>
+            </div>
+            <div class="form-group">
+              <label for="message" data-key="form_label_message">Your message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+              <div class="error-message" id="message-error"></div>
+            </div>
+            <div class="send-options">
+              <button type="button" class="btn btn-email" id="send-email">
+                <i class="fas fa-envelope" aria-hidden="true"></i> <span data-key="btn_send_email">Send via Email</span>
+              </button>
+              <button type="button" class="btn btn-whatsapp" id="send-whatsapp">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> <span data-key="btn_send_whatsapp">Send via WhatsApp</span>
+              </button>
+            </div>
+          </form>
+          <div class="motivational-message">
+            <blockquote data-key="contact_motivational_quote">
+              "I am available for collaboration and new projects. Feel free to reach out for any inquiries or job offers."
+            </blockquote>
+          </div>
+          <div class="social-links-contact">
+            <a href="https://github.com/amer-developer0  " target="_blank" rel="noopener" aria-label="GitHub" data-key="social_github">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.facebook.com/share/1LCZR74qAY/  " target="_blank" rel="noopener" aria-label="Facebook" data-key="social_facebook">
+              <i class="fab fa-facebook"></i> Facebook
+            </a>
+            <a href="https://tiktok.com/@amer.developer8  " target="_blank" rel="noopener" aria-label="TikTok" data-key="social_tiktok">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://www.instagram.com/amer_aeveloper?igsh=Z3pkOThsbzcydjF5" target="_blank" rel="noopener" aria-label="Instagram" data-key="social_instagram">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="  https://x.com/Amer221534?t=Ekl-Dupdl0nP77nAcSOjLQ&s=09" target="_blank" rel="noopener" aria-label="X Twitter" data-key="social_twitter">
+              <i class="fab fa-twitter"></i> X (Twitter)
+            </a>
+            <a href="  https://wa.me/201280787721  " target="_blank" rel="noopener" aria-label="WhatsApp" data-key="social_whatsapp">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+<!-- Language Switcher -->
+<div class="language-switcher" id="language-switcher" role="button" aria-label="Change Language">
+  <i class="fas fa-globe"></i>
+  <ul class="language-menu" id="language-menu" hidden>
+    <li data-lang="en" class="active" >English</li>
+    <li data-lang="ar">العربية</li>
+    <li data-lang="de">Deutsch</li>
+    <li data-lang="fr">Français</li>
+    <li data-lang="es">Español</li>
+    <li data-lang="ru">Русский</li>
+    <li data-lang="pt">Português</li>
+  </ul>
+</div>
+
+
+
+
+  <!-- Footer Section -->
+  <footer class="main-footer" role="contentinfo">
+    <div class="container footer-container">
+      <div class="footer-columns">
+        <!-- Column 1: Logo and short bio -->
+        <div class="footer-column footer-about" aria-label="About Amer Developer">
+          <img src="assets/images/logo.png" alt="Amer Developer Logo" class="footer-logo" loading="lazy" width="100" height="100" />
+          <p data-key="footer_about_text">
+            Amer Developer is a passionate full-stack web developer dedicated to crafting innovative and effective digital solutions with creativity and precision.
+          </p>
+        </div>
+  
+        <!-- Column 2: Quick navigation links -->
+        <nav class="footer-column footer-nav" aria-label="Footer Navigation">
+          <h3 data-key="footer_quick_links_title">Quick Links</h3>
+          <ul>
+            <li><a href="#home" class="footer-link" data-key="footer_link_home">Home</a></li>
+            <li><a href="#about" class="footer-link" data-key="footer_link_about">About</a></li>
+            <li><a href="#services" class="footer-link" data-key="footer_link_services">Services</a></li>
+            <li><a href="#skills" class="footer-link" data-key="footer_link_skills">Skills</a></li>
+            <li><a href="#tools" class="footer-link" data-key="footer_link_tools">Tools</a></li>
+            <li><a href="#projects" class="footer-link" data-key="footer_link_projects">Projects</a></li>
+            <li><a href="#contact" class="footer-link" data-key="footer_link_contact">Contact</a></li>
+          </ul>
+        </nav>
+  
+                      <!-- Column 3: Social media icons with text -->
+        <div class="footer-column footer-social" aria-label="Social Media Links">
+          <h3 data-key="footer_connect_title">Connect with Me</h3>
+          <ul class="social-links-list">
+            <li><a href="https://github.com/amer-developer0  " target="_blank" rel="noopener" aria-label="GitHub" data-key="footer_social_github"><i class="fab fa-github"></i> <span data-key="social_github_text">GitHub</span></a></li>
+            <li><a href="https://www.facebook.com/share/1LCZR74qAY/  " target="_blank" rel="noopener" aria-label="Facebook" data-key="footer_social_facebook"><i class="fab fa-facebook"></i> <span data-key="social_facebook_text">Facebook</span></a></li>
+            <li><a href="https://tiktok.com/@amer.developer8  " target="_blank" rel="noopener" aria-label="TikTok" data-key="footer_social_tiktok"><i class="fab fa-tiktok"></i> <span data-key="social_tiktok_text">TikTok</span></a></li>
+            <li><a href="https://www.instagram.com/amer_aeveloper?igsh=Z3pkOThsbzcydjF5" target="_blank" rel="noopener" aria-label="Instagram" data-key="footer_social_instagram"><i class="fab fa-instagram"></i> <span data-key="social_instagram_text">Instagram</span></a></li>
+            <li><a href="  https://x.com/Amer221534?t=Ekl-Dupdl0nP77nAcSOjLQ&s=09" target="_blank" rel="noopener" aria-label="X Twitter" data-key="footer_social_twitter"><i class="fab fa-twitter"></i> <span data-key="social_twitter_text">X (Twitter)</span></a></li>
+            <li><a href="  https://wa.me/201280787721  " target="_blank" rel="noopener" aria-label="WhatsApp" data-key="footer_social_whatsapp"><i class="fab fa-whatsapp"></i> <span data-key="social_whatsapp_text">WhatsApp</span></a></li>
+          </ul>
+        </div>
+  
+            <!-- Copyright -->
+<div class="footer-bottom" role="contentinfo" data-key="footer_copyright_text">
+  © 2025 Amer Developer. All Rights Reserved.
+</div>
+
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/language-switcher.js" defer></script>
+
+</body>
+</html>

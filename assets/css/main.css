@@ -1,0 +1,1521 @@
+/* ========================================
+   FULL-STACK PORTFOLIO - STYLESHEET (Final Fixed Version - No Colors)
+   Author: Amer Developer
+   Version: 15.6 | Added Services Section Styles + Loading Screen & Critical Fixes
+   ======================================== */
+
+/* ================================ */
+/* Root Variables                   */
+/* ================================ */
+/*
+  هذا القسم يحدد المتغيرات (Custom Properties) التي تستخدم في جميع أنحاء ملف CSS.
+  تساعد هذه المتغيرات في الحفاظ على الاتساق وسهولة التعديل على القيم مثل الخطوط، المسافات،
+  نصف قطر الحدود، الظلال، والانتقالات.
+*/
+:root {
+  /* Font Variables: تحديد أنواع وأحجام الخطوط المستخدمة */
+  --font-main: 'Lato', sans-serif; /* الخط الأساسي للمحتوى */
+  --font-heading: 'Montserrat', sans-serif; /* الخط للعناوين */
+  --font-size-base: 1rem; /* حجم الخط الأساسي (16px) */
+  --font-size-sm: 0.875rem; /* حجم خط صغير */
+  --font-size-md: 1.1rem; /* حجم خط متوسط */
+  --font-size-lg: 1.25rem; /* حجم خط كبير */
+  --font-size-xl: 1.5rem; /* حجم خط أكبر */
+  --font-size-2xl: 2rem; /* حجم خط كبير جداً */
+  --font-size-3xl: 2.5rem; /* حجم خط للعناوين الرئيسية */
+  --font-size-4xl: 3.5rem; /* حجم خط للعناوين الكبيرة جداً */
+
+  /* Spacing Variables: تحديد المسافات الداخلية والخارجية */
+  --space-sm: 1rem; /* مسافة صغيرة */
+  --space-md: 1.5rem; /* مسافة متوسطة */
+  --space-lg: 2rem; /* مسافة كبيرة */
+  --space-xl: 3rem; /* مسافة أكبر */
+  --space-2xl: 5rem; /* مسافة كبيرة جداً */
+
+  /* Border Radius Variables: تحديد نصف قطر الزوايا للعناصر */
+  --border-radius-sm: 6px; /* نصف قطر صغير (لأزرار الفورم) */
+  --border-radius-md: 12px; /* نصف قطر متوسط */
+  --border-radius-lg: 20px; /* نصف قطر كبير */
+  --border-radius-circle: 50%; /* نصف قطر دائري كامل */
+
+  /* Shadow Variables: تحديد أنماط الظلال للعناصر */
+  --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.15); /* ظل خفيف */
+  --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.2); /* ظل متوسط */
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.25); /* ظل كبير */
+  /* ملاحظة: ألوان الظلال يتم تحديدها في ملفات الثيم (theme-light.css, theme-dark.css) */
+
+  /* Transition Variables: تحديد سرعة ونوع الانتقالات للعناصر */
+  --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* انتقال سريع */
+  --transition-all: all var(--transition-fast); /* تطبيق الانتقال على جميع الخصائص */
+
+  /* Layout Variables: متغيرات خاصة بالتخطيط العام */
+  --header-height: 70px; /* ارتفاع الهيدر الثابت */
+  --container-width: 1200px; /* أقصى عرض للمحتوى داخل الـ container */
+}
+
+/* ================================ */
+/* Base & Reset Styles              */
+/* ================================ */
+/*
+  هذا القسم يحتوي على قواعد CSS الأساسية لإعادة تعيين الأنماط الافتراضية للمتصفح
+  وتطبيق أنماط عامة لضمان اتساق المظهر عبر المتصفحات المختلفة.
+*/
+*,
+*::before,
+*::after {
+  margin: 0; /* إزالة الهوامش الخارجية الافتراضية */
+  padding: 0; /* إزالة الهوامش الداخلية الافتراضية */
+  box-sizing: border-box; /* استخدام نموذج الصندوق Border-box لسهولة التخطيط */
+}
+
+html {
+  scroll-behavior: smooth; /* تفعيل التمرير السلس عند النقر على روابط الـ anchor */
+  font-size: 16px; /* تحديد حجم الخط الأساسي للصفحة */
+}
+
+body {
+  font-family: var(--font-main); /* تطبيق الخط الأساسي المحدد في المتغيرات */
+  line-height: 1.7; /* تحديد ارتفاع السطر لتحسين قابلية القراءة */
+  overflow-x: hidden; /* منع التمرير الأفقي غير المرغوب فيه */
+  opacity: 0; /* إخفاء الجسم مبدئياً لتطبيق تأثير fadeIn */
+  animation: fadeIn 0.5s ease forwards; /* تطبيق تأثير fadeIn عند تحميل الصفحة */
+}
+
+/* .container: كلاس يستخدم لتحديد أقصى عرض للمحتوى وتوسيطه */
+.container {
+  max-width: var(--container-width); /* أقصى عرض للمحتوى */
+  margin: 0 auto; /* توسيط المحتوى أفقياً */
+  padding: 0 2rem; /* مسافة داخلية على الجانبين */
+}
+
+/* .skip-link: رابط لتجاوز المحتوى (لتحسين إمكانية الوصول) */
+.skip-link {
+  position: absolute; /* تحديد الموضع بشكل مطلق */
+  top: -40px; /* إخفاء الرابط خارج الشاشة مبدئياً */
+  left: 6px; /* تحديد الموضع من اليسار */
+  padding: 8px; /* مسافة داخلية للرابط */
+  font-size: 0.9rem; /* حجم الخط */
+  z-index: 1000; /* جعله يظهر فوق العناصر الأخرى */
+  text-decoration: none; /* إزالة التسطير الافتراضي */
+  border-radius: 6px; /* زوايا مستديرة */
+  transition: top 0.3s; /* انتقال سلس عند ظهور الرابط */
+}
+
+/* .skip-link:focus: عند التركيز على الرابط (باستخدام Tab) */
+.skip-link:focus {
+  top: 6px; /* إظهار الرابط داخل الشاشة */
+}
+
+/* ================================ */
+/* Typography Styles                */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط الخطوط والعناوين والنصوص العامة.
+*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading); /* تطبيق خط العناوين المحدد */
+  font-weight: 700; /* وزن الخط (عريض) */
+  line-height: 1.2; /* ارتفاع السطر للعناوين */
+  margin-bottom: var(--space-md); /* مسافة سفلية افتراضية */
+}
+
+h1 {
+  font-size: var(--font-size-4xl); /* حجم خط كبير جداً للعنوان الرئيسي */
+}
+
+h2 {
+  font-size: var(--font-size-3xl); /* حجم خط كبير للعناوين الفرعية */
+  text-align: center; /* توسيط النص */
+  position: relative; /* لتحديد موضع العنصر الزائف (::after) */
+}
+
+/* h2::after: عنصر زائف يضيف خطاً تحت العناوين الفرعية */
+h2::after {
+  content: ''; /* محتوى فارغ للعنصر الزائف */
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة لـ h2 */
+  bottom: -10px; /* الموضع من الأسفل */
+  left: 50%; /* الموضع من اليسار (للتوسيط) */
+  transform: translateX(-50%); /* توسيط أفقي دقيق */
+  width: 60px; /* عرض الخط */
+  height: 3px; /* ارتفاع الخط */
+  border-radius: 3px; /* زوايا مستديرة للخط */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+p {
+  margin-bottom: var(--space-sm); /* مسافة سفلية للفقرات */
+}
+
+a {
+  text-decoration: none; /* إزالة التسطير الافتراضي للروابط */
+  transition: var(--transition-all); /* تطبيق انتقال سلس على جميع الخصائص */
+}
+
+strong {
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .highlight: كلاس لتسليط الضوء على جزء من النص */
+.highlight {
+  position: relative; /* لتحديد موضع العنصر الزائف (::after) */
+}
+
+/* .highlight::after: عنصر زائف يضيف خلفية تحت النص المميز */
+.highlight::after {
+  content: ''; /* محتوى فارغ للعنصر الزائف */
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة لـ .highlight */
+  left: 0; /* الموضع من اليسار */
+  bottom: 2px; /* الموضع من الأسفل */
+  width: 100%; /* عرض الخلفية */
+  height: 8px; /* ارتفاع الخلفية */
+  z-index: -1; /* جعله يظهر خلف النص */
+  opacity: 0.4; /* شفافية الخلفية */
+  animation: pulse-glow 2s infinite alternate; /* تطبيق تأثير توهج نبضي */
+}
+
+/* .typing-text: كلاس لتطبيق تأثير الكتابة */
+.typing-text {
+  border-right: 2px solid; /* حدود يمنى (مؤشر الكتابة) - اللون يتم تحديده في ملفات الثيم */
+  width: 0; /* عرض مبدئي صفر لإخفاء النص */
+  overflow: hidden; /* إخفاء أي محتوى يتجاوز العرض */
+  white-space: nowrap; /* منع التفاف النص */
+  animation: typing 3.5s steps(40) 1s both, blink-caret 0.75s step-end infinite; /* تطبيق تأثير الكتابة ومؤشر الكتابة */
+}
+
+/* @keyframes typing: تأثير الكتابة */
+@keyframes typing {
+  from { width: 0; } /* يبدأ العرض من صفر */
+  to { width: 100%; } /* ينتهي العرض إلى 100% */
+}
+
+/* @keyframes blink-caret: تأثير وميض مؤشر الكتابة */
+@keyframes blink-caret {
+  from, to { border-color: transparent; } /* المؤشر شفاف في البداية والنهاية */
+  50% { border-color: var(--accent-teal); } /* يظهر المؤشر بلون معين في المنتصف (اللون يتم تحديده في ملفات الثيم) */
+}
+
+/* ================================ */
+/* Global Animations                */
+/* ================================ */
+/*
+  هذا القسم يحدد الرسوم المتحركة (keyframes) المستخدمة في أجزاء مختلفة من الصفحة.
+*/
+@keyframes fadeIn {
+  from { opacity: 0; } /* يبدأ من شفافية كاملة */
+  to { opacity: 1; } /* ينتهي إلى شفافية كاملة */
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); } /* يبدأ من شفافية كاملة وموضع أسفل */
+  to { opacity: 1; transform: translateY(0); } /* ينتهي إلى شفافية كاملة وموضع أصلي */
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); } /* يبدأ من شفافية كاملة وموضع أسفل */
+  to { opacity: 1; transform: translateY(0); } /* ينتهي إلى شفافية كاملة وموضع أصلي */
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.8); } /* يبدأ من شفافية كاملة وحجم أصغر */
+  to { opacity: 1; transform: scale(1); } /* ينتهي إلى شفافية كاملة وحجم أصلي */
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.3; } /* يبدأ بحجم أصلي وشفافية منخفضة */
+  50% { transform: scale(1.05); opacity: 0.5; } /* يتوسع قليلاً وتزداد الشفافية */
+  100% { transform: scale(1); opacity: 0.3; } /* يعود إلى الحجم الأصلي والشفافية المنخفضة */
+}
+
+@keyframes pulse-glow {
+  0% { opacity: 0.4; } /* يبدأ بتوهج منخفض */
+  100% { opacity: 0.7; } /* ينتهي بتوهج أعلى */
+}
+
+/* ================================ */
+/* Loading Screen                   */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط شاشة التحميل التي تظهر قبل تحميل المحتوى الرئيسي.
+*/
+.loading-screen {
+  position: fixed; /* تثبيت الشاشة في مكانها */
+  top: 0; /* من الأعلى */
+  left: 0; /* من اليسار */
+  width: 100%; /* عرض كامل */
+  height: 100%; /* ارتفاع كامل */
+  display: flex; /* استخدام Flexbox لتوسيط المحتوى */
+  align-items: center; /* توسيط عمودي */
+  justify-content: center; /* توسيط أفقي */
+  z-index: 9999; /* جعله يظهر فوق جميع العناصر */
+  transition: opacity 0.6s ease-out; /* انتقال سلس عند إخفاء الشاشة */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .loading-logo: شعار التحميل */
+.loading-logo {
+  width: 120px; /* عرض الشعار */
+  height: 120px; /* ارتفاع الشعار */
+  border-radius: 50%; /* جعله دائرياً */
+  animation: pulse-glow 2s infinite alternate; /* تطبيق تأثير توهج نبضي */
+}
+
+/* ================================ */
+/* Header & Navigation              */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط الهيدر (الرأس) وشريط التنقل.
+*/
+.main-header {
+  position: fixed; /* تثبيت الهيدر في مكانه */
+  top: 0; /* من الأعلى */
+  width: 100%; /* عرض كامل */
+  height: var(--header-height); /* ارتفاع الهيدر المحدد في المتغيرات */
+  backdrop-filter: blur(10px); /* تطبيق تأثير ضبابي على الخلفية */
+  -webkit-backdrop-filter: blur(10px); /* دعم المتصفحات القديمة لـ backdrop-filter */
+  z-index: 1000; /* جعله يظهر فوق معظم العناصر */
+  display: flex; /* استخدام Flexbox لتنظيم العناصر */
+  align-items: center; /* توسيط عمودي للعناصر */
+  justify-content: space-between; /* توزيع العناصر مع مسافة بينها */
+  padding: 0 var(--space-lg); /* مسافة داخلية على الجانبين */
+  transition: var(--transition-all), transform 0.3s ease-in-out; /* انتقال سلس عند التغيير */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .logo img: شعار الموقع في الهيدر */
+.logo img {
+  width: 60px; /* عرض الشعار */
+  height: 60px; /* ارتفاع الشعار */
+  border-radius: 50%; /* جعله دائرياً */
+  transition: var(--transition-all), transform 0.2s; /* انتقال سلس عند التفاعل */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+}
+
+/* .logo img:hover: عند تمرير المؤشر فوق الشعار */
+.logo img:hover {
+  transform: scale(1.1) rotate(5deg); /* تكبير وتدوير الشعار قليلاً */
+}
+
+/* .main-nav: شريط التنقل الرئيسي */
+.main-nav {
+  flex: 1; /* السماح لشريط التنقل بأخذ المساحة المتاحة */
+  text-align: center; /* توسيط قائمة الروابط */
+}
+
+/* .nav-list: قائمة الروابط في شريط التنقل */
+.nav-list {
+  display: flex; /* استخدام Flexbox لتنظيم الروابط */
+  justify-content: center; /* توسيط الروابط أفقياً */
+  list-style: none; /* إزالة النقاط الافتراضية للقائمة */
+  gap: var(--space-lg); /* مسافة بين الروابط */
+}
+
+/* .nav-item: عنصر القائمة الفردي */
+.nav-item {
+  position: relative; /* لتحديد موضع العنصر الزائف (::after) */
+}
+
+/* .nav-link: رابط التنقل */
+.nav-link {
+  font-size: var(--font-size-md); /* حجم الخط */
+  font-weight: 500; /* وزن الخط */
+  position: relative; /* لتحديد موضع العنصر الزائف (::after) */
+  padding: var(--space-sm) 0; /* مسافة داخلية علوية وسفلية */
+  display: inline-block; /* جعله عنصراً داخلياً يمكن تطبيق العرض والارتفاع عليه */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .nav-link::after: عنصر زائف يضيف خطاً تحت الرابط */
+.nav-link::after {
+  content: ''; /* محتوى فارغ */
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة للرابط */
+  bottom: 0; /* الموضع من الأسفل */
+  left: 0; /* الموضع من اليسار */
+  width: 0; /* عرض مبدئي صفر (مخفي) */
+  height: 2px; /* ارتفاع الخط */
+  transition: var(--transition-fast); /* انتقال سلس عند ظهور الخط */
+  border-radius: 1px; /* زوايا مستديرة للخط */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .nav-link:hover::after, .nav-link.active::after: عند تمرير المؤشر أو عندما يكون الرابط نشطاً */
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%; /* إظهار الخط بعرض كامل */
+}
+
+/* .nav-link.active: عندما يكون الرابط نشطاً */
+.nav-link.active {
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .theme-toggle-btn: زر تبديل الوضع الليلي/النهاري */
+.theme-toggle-btn {
+  background: transparent; /* خلفية شفافة */
+  border: none; /* إزالة الحدود الافتراضية */
+  width: 42px; /* عرض الزر */
+  height: 42px; /* ارتفاع الزر */
+  border: 2px solid; /* حدود الزر - اللون يتم تحديده في ملفات الثيم */
+  border-radius: 50%; /* جعله دائرياً */
+  display: flex; /* استخدام Flexbox لتوسيط الأيقونة */
+  align-items: center; /* توسيط عمودي للأيقونة */
+  justify-content: center; /* توسيط أفقي للأيقونة */
+  font-size: 1.1rem; /* حجم خط الأيقونة */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  transition: all 0.3s ease; /* انتقال سلس عند التفاعل */
+  margin-left: 1rem; /* مسافة من اليسار */
+  color: var(--text-primary); /* لون النص الأساسي - يتم تحديده في ملفات الثيم */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* ظل خفيف للزر */
+}
+
+/* .theme-toggle-btn:hover: عند تمرير المؤشر فوق الزر */
+.theme-toggle-btn:hover {
+  transform: scale(1.1); /* تكبير الزر قليلاً */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* زيادة حجم الظل */
+  background: var(--card-bg); /* تغيير لون الخلفية - يتم تحديده في ملفات الثيم */
+}
+
+/* #order-service-btn: زر طلب الخدمة */
+#order-service-btn {
+  border: none; /* إزالة الحدود */
+  padding: 10px 20px; /* مسافة داخلية */
+  border-radius: 30px; /* زوايا مستديرة جداً */
+  font-weight: 600; /* وزن الخط */
+  font-size: 0.95rem; /* حجم الخط */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  transition: all 0.3s ease; /* انتقال سلس عند التفاعل */
+  margin-left: 1rem; /* مسافة من اليسار */
+  /* الألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* #order-service-btn:hover: عند تمرير المؤشر فوق الزر */
+#order-service-btn:hover {
+  transform: translateY(-2px); /* رفع الزر قليلاً */
+}
+
+/* #order-service-btn:active: عند النقر على الزر */
+#order-service-btn:active {
+  transform: translateY(0); /* إعادة الزر إلى موضعه الأصلي */
+}
+
+/* ================================ */
+/* Hero Section                     */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط قسم البطل (Hero Section) في أعلى الصفحة.
+*/
+ .hero-section {
+  min-height: 100vh; /* ارتفاع لا يقل عن 100% من ارتفاع الشاشة */
+  display: flex; /* استخدام Flexbox لتنظيم المحتوى */
+  align-items: center; /* توسيط عمودي للمحتوى */
+  padding-top: var(--header-height); /*مسافة علوية لتجنب تداخل الهيدر/*
+  position: relative; /* لتحديد موضع العناصر المطلقة داخله */
+  overflow: hidden; /* إخفاء أي محتوى يتجاوز حدود القسم */
+  /* الخلفية يتم تحديدها في ملفات الثيم */
+} 
+
+
+/* .hero-content-wrapper: حاوية المحتوى داخل قسم البطل */
+.hero-content-wrapper {
+  display: flex; /* استخدام Flexbox لتنظيم النص والصورة */
+  justify-content: center; /* توسيط أفقي للمحتوى */
+  align-items: center; /* توسيط عمودي للمحتوى */
+  gap: 8%; /* مسافة بين عناصر Flexbox */
+  text-align: center; /* توسيط النص (افتراضياً) */
+  max-width: 1400px; /* أقصى عرض للحاوية */
+  margin: 0 auto; /* توسيط الحاوية أفقياً */
+  padding: 0 2rem; /* مسافة داخلية على الجانبين */
+}
+
+/* .hero-text: حاوية النص في قسم البطل */
+.hero-text {
+  flex: 1; /* السماح للنص بأخذ المساحة المتاحة */
+  max-width: 550px; /* أقصى عرض للنص */
+  text-align: left; /* محاذاة النص إلى اليسار */
+}
+
+/* .hero-title: عنوان قسم البطل */
+.hero-title {
+  font-size: var(--font-size-4xl); /* حجم الخط */
+  margin-bottom: var(--space-sm); /* مسافة سفلية */
+  opacity: 0; /* إخفاء مبدئياً لتطبيق الرسوم المتحركة */
+  animation: slideUp 0.8s ease forwards; /* تطبيق تأثير slideUp */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .hero-title .highlight,
+.hero-title #hero-name {
+  display: block; 
+}
+
+.hero-title #hero-name {
+  font-size: 3rem;     
+} */
+
+
+/* .hero-subtitle: عنوان فرعي في قسم البطل */
+.hero-subtitle {
+  font-size: var(--font-size-2xl); /* حجم الخط */
+  margin-bottom: var(--space-lg); /* مسافة سفلية */
+  opacity: 0; /* إخفاء مبدئياً */
+  animation: slideUp 0.8s ease 0.2s forwards; /* تطبيق تأثير slideUp مع تأخير */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .hero-paragraph: فقرة في قسم البطل */
+.hero-paragraph {
+  font-size: var(--font-size-lg); /* حجم الخط */
+  margin-bottom: var(--space-lg); /* مسافة سفلية */
+  opacity: 0; /* إخفاء مبدئياً */
+  animation: fadeIn 0.8s ease 0.4s forwards; /* تطبيق تأثير fadeIn مع تأخير */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .btn: الأزرار العامة */
+.btn {
+  display: inline-flex; /* عرض كـ inline-flex لتنظيم المحتوى الداخلي */
+  align-items: center; /* توسيط عمودي للمحتوى الداخلي */
+  gap: 8px; /* مسافة بين الأيقونة والنص */
+  padding: 14px 32px; /* مسافة داخلية */
+  font-weight: 600; /* وزن الخط */
+  border: none; /* إزالة الحدود */
+  border-radius: 30px; /* زوايا مستديرة جداً */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  box-shadow: var(--shadow-sm); /* تطبيق ظل خفيف */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+  font-size: var(--font-size-md); /* حجم الخط */
+  text-transform: uppercase; /* تحويل النص إلى أحرف كبيرة */
+  letter-spacing: 1px; /* مسافة بين الأحرف */
+  /* الألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .btn:hover: عند تمرير المؤشر فوق الزر */
+.btn:hover {
+  transform: translateY(-4px); /* رفع الزر قليلاً */
+  box-shadow: var(--shadow-md); /* زيادة حجم الظل */
+}
+
+/* .btn:active: عند النقر على الزر */
+.btn:active {
+  transform: translateY(-1px); /* إعادة الزر إلى موضعه الأصلي تقريباً */
+}
+
+/* .btn-primary: الزر الأساسي */
+.btn-primary {
+  animation: slideUp 0.8s ease 0.6s forwards; /* تطبيق تأثير slideUp مع تأخير */
+  /* الألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .social-icons-home: أيقونات التواصل الاجتماعي في قسم البطل */
+.social-icons-home {
+  display: flex; /* استخدام Flexbox لتنظيم الأيقونات */
+  gap: 1.5rem; /* مسافة بين الأيقونات */
+  margin-top: 1.5rem; /* مسافة علوية */
+  justify-content: flex-start; /* محاذاة الأيقونات إلى اليسار */
+  opacity: 0; /* إخفاء مبدئياً */
+  animation: fadeIn 0.8s ease 0.8s forwards; /* تطبيق تأثير fadeIn مع تأخير */
+}
+
+/* .social-icons-home a: رابط أيقونة التواصل الاجتماعي */
+.social-icons-home a {
+  font-size: 1.2rem; /* حجم الأيقونة */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .social-icons-home a:hover: عند تمرير المؤشر فوق الأيقونة */
+.social-icons-home a:hover {
+  transform: translateY(-3px) scale(1.1); /* رفع وتكبير الأيقونة قليلاً */
+}
+
+/* .hero-avatar: صورة الملف الشخصي في قسم البطل */
+.hero-avatar {
+  flex: 1; /* السماح للصورة بأخذ المساحة المتاحة */
+  display: flex; /* استخدام Flexbox لتوسيط الصورة */
+  justify-content: center; /* توسيط أفقي للصورة */
+  position: relative; /* لتحديد موضع الحلقة المتوهجة */
+  opacity: 0; /* إخفاء مبدئياً */
+  animation: zoomIn 1s ease 0.8s forwards; /* تطبيق تأثير zoomIn مع تأخير */
+}
+
+/* .avatar-img: الصورة الفعلية للملف الشخصي */
+.avatar-img {
+  width: 320px; /* عرض الصورة */
+  height: 320px; /* ارتفاع الصورة */
+  border-radius: var(--border-radius-circle); /* جعل الصورة دائرية */
+  border: 4px solid; /* حدود الصورة - اللون يتم تحديده في ملفات الثيم */
+  box-shadow: 0 0 40px; /* ظل حول الصورة - اللون يتم تحديده في ملفات الثيم */
+  object-fit: cover; /* تغطية المساحة المتاحة مع الحفاظ على نسبة الأبعاد */
+}
+
+/* .glow-ring: الحلقة المتوهجة حول الصورة */
+.glow-ring {
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة لـ .hero-avatar */
+  width: 350px; /* عرض الحلقة */
+  height: 350px; /* ارتفاع الحلقة */
+  border: 2px solid; /* حدود الحلقة - اللون يتم تحديده في ملفات الثيم */
+  border-radius: var(--border-radius-circle); /* جعل الحلقة دائرية */
+  animation: pulse-ring 2s infinite; /* تطبيق تأثير توهج نبضي */
+  opacity: 0.3; /* شفافية الحلقة */
+}
+
+/* ================================ */
+/* Sections General Styles          */
+/* ================================ */
+/*
+  هذا القسم يحدد الأنماط العامة لجميع الأقسام في الصفحة.
+*/
+.section {
+  padding: var(--space-2xl) 0; /* مسافة داخلية علوية وسفلية كبيرة */
+  opacity: 0; /* إخفاء مبدئياً لتطبيق الرسوم المتحركة */
+  transform: translateY(30px); /* تحريك القسم قليلاً للأسفل مبدئياً */
+  transition: opacity 0.8s, transform 0.8s; /* انتقال سلس عند ظهور القسم */
+  /* الخلفية يتم تحديدها في ملفات الثيم */
+}
+
+/* .section.visible: عندما يكون القسم مرئياً */
+.section.visible {
+  opacity: 1; /* إظهار القسم */
+  transform: translateY(0); /* إعادة القسم إلى موضعه الأصلي */
+}
+
+/* .section-title: عنوان القسم */
+.section-title {
+  margin-bottom: var(--space-xl); /* مسافة سفلية كبيرة */
+  animation: fadeInUp 0.8s ease forwards; /* تطبيق تأثير fadeInUp */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* section[id]: لضبط التمرير عند الانتقال إلى قسم معين */
+section[id] {
+  scroll-margin-top: 50px; /* مسافة علوية عند التمرير إلى القسم لتجنب تداخل الهيدر */
+}
+
+/* ================================ */
+/* Skills, Tools & Services Sections*/
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط أقسام المهارات والأدوات والخدمات.
+*/
+.skills-grid,
+.tools-grid,
+.services-grid {
+  display: grid; /* استخدام Grid لتنظيم البطاقات */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* أعمدة متجاوبة */
+  gap: var(--space-md); /* مسافة بين البطاقات */
+  margin-top: var(--space-lg); /* مسافة علوية */
+}
+
+.skill-card,
+.tool-card,
+.service-card {
+  border-radius: var(--border-radius-md); /* زوايا مستديرة */
+  padding: var(--space-lg); /* مسافة داخلية */
+  text-align: center; /* توسيط النص */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+  position: relative; /* لتحديد موضع التلميح (tooltip) */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  overflow: hidden; /* إخفاء أي محتوى يتجاوز حدود البطاقة */
+  backdrop-filter: blur(5px); /* تطبيق تأثير ضبابي على الخلفية */
+  /* الألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .skill-card:hover, .tool-card:hover, .service-card:hover: عند تمرير المؤشر فوق البطاقة */
+.skill-card:hover,
+.tool-card:hover,
+.service-card:hover {
+  transform: translateY(-10px); /* رفع البطاقة قليلاً */
+}
+
+/* .skill-card h3, .tool-card h3, .service-card h3: عناوين البطاقات */
+.skill-card h3,
+.tool-card h3,
+.service-card h3 {
+  font-size: var(--font-size-xl); /* حجم الخط */
+  margin-bottom: var(--space-sm); /* مسافة سفلية */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .skill-card p, .tool-card p, .service-card p: فقرات البطاقات */
+.skill-card p,
+.tool-card p,
+.service-card p {
+  font-size: var(--font-size-sm); /* حجم الخط */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .service-card.selectable: بطاقة الخدمة القابلة للاختيار */
+.service-card.selectable {
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  transition: all 0.3s ease; /* انتقال سلس عند التفاعل */
+}
+
+/* .service-card.selectable.selected: بطاقة الخدمة المختارة */
+.service-card.selectable.selected {
+  border: 3px solid; /* حدود سميكة - اللون يتم تحديده في ملفات الثيم */
+  transform: translateY(-5px); /* رفع البطاقة قليلاً */
+  box-shadow: 0 0 20px, 0 0 0 3px; /* ظل وتوهج حول البطاقة - الألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .tooltip: التلميحات التي تظهر عند تمرير المؤشر */
+.tooltip {
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة للعنصر الأب */
+  bottom: -60px; /* الموضع من الأسفل */
+  left: 50%; /* الموضع من اليسار (للتوسيط) */
+  transform: translateX(-50%); /* توسيط أفقي دقيق */
+  padding: 12px 16px; /* مسافة داخلية */
+  border: 1px solid; /* حدود التلميح - اللون يتم تحديده في ملفات الثيم */
+  border-radius: 6px; /* زوايا مستديرة */
+  font-size: 0.9rem; /* حجم الخط */
+  white-space: nowrap; /* منع التفاف النص */
+  opacity: 0; /* إخفاء مبدئياً */
+  visibility: hidden; /* إخفاء التلميح تماماً */
+  transition: all 0.3s ease; /* انتقال سلس عند الظهور */
+  z-index: 10; /* جعله يظهر فوق العناصر الأخرى */
+  max-width: 250px; /* أقصى عرض للتلميح */
+  text-align: center; /* توسيط النص */
+  box-shadow: var(--shadow-sm); /* ظل خفيف */
+  /* الخلفية واللون يتم تحديدهما في ملفات الثيم */
+}
+
+/* .tooltip::before: سهم التلميح */
+.tooltip::before {
+  content: ''; /* محتوى فارغ */
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة للتلميح */
+  top: -8px; /* الموضع من الأعلى */
+  left: 50%; /* الموضع من اليسار (للتوسيط) */
+  transform: translateX(-50%); /* توسيط أفقي دقيق */
+  width: 0; /* عرض صفر */
+  height: 0; /* ارتفاع صفر */
+  border-left: 8px solid transparent; /* حدود يسرى شفافة */
+  border-right: 8px solid transparent; /* حدود يمنى شفافة */
+  border-bottom: 8px solid; /* حدود سفلية (تشكل السهم) - اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .skill-card:hover .tooltip, .tool-card:hover .tooltip, .service-card:hover .tooltip: عند تمرير المؤشر فوق البطاقة */
+.skill-card:hover .tooltip,
+.tool-card:hover .tooltip,
+.service-card:hover .tooltip {
+  opacity: 1; /* إظهار التلميح */
+  visibility: visible; /* جعله مرئياً */
+}
+
+/* ================================ */
+/* Projects Section                 */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط قسم المشاريع.
+*/
+.projects-grid {
+  display: grid; /* استخدام Grid لتنظيم بطاقات المشاريع */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* أعمدة متجاوبة */
+  gap: var(--space-lg); /* مسافة بين البطاقات */
+  margin-top: var(--space-lg); /* مسافة علوية */
+}
+
+/* .project-card: بطاقة المشروع الفردية */
+.project-card {
+  border-radius: var(--border-radius-lg); /* زوايا مستديرة */
+  overflow: hidden; /* إخفاء أي محتوى يتجاوز حدود البطاقة */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+  box-shadow: var(--shadow-sm); /* ظل خفيف */
+  /* الخلفية يتم تحديدها في ملفات الثيم */
+}
+
+/* .project-card:hover: عند تمرير المؤشر فوق بطاقة المشروع */
+.project-card:hover {
+  transform: translateY(-10px); /* رفع البطاقة قليلاً */
+}
+
+/* .project-img-wrapper: حاوية الصورة لتحديد موضع زر الفيديو */
+.project-img-wrapper {
+  position: relative; /* لتحديد موضع زر الفيديو المطلق */
+}
+
+/* .project-img: صورة المشروع */
+.project-img {
+  width: 100%; /* عرض كامل */
+  min-height: 140px; /* أدنى ارتفاع */
+  height: auto; /* ارتفاع تلقائي للحفاظ على نسبة الأبعاد */
+  object-fit: cover; /* تغطية المساحة المتاحة مع الحفاظ على نسبة الأبعاد */
+  object-position: center; /* توسيط الصورة */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+}
+
+/* .project-card:hover .project-img: عند تمرير المؤشر فوق بطاقة المشروع */
+.project-card:hover .project-img {
+  transform: scale(1.05); /* تكبير الصورة قليلاً */
+}
+
+/* .project-content: محتوى بطاقة المشروع (العنوان والوصف والزر) */
+.project-content {
+  padding: var(--space-lg); /* مسافة داخلية */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .project-content h3: عنوان المشروع */
+.project-content h3 {
+  font-size: var(--font-size-lg); /* حجم الخط */
+  margin-bottom: var(--space-sm); /* مسافة سفلية */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .project-content p: وصف المشروع */
+.project-content p {
+  font-size: var(--font-size-sm); /* حجم الخط */
+  margin-bottom: var(--space-md); /* مسافة سفلية */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .draggable-video-btn: زر تشغيل الفيديو المتحرك */
+.draggable-video-btn {
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة لـ .project-img-wrapper */
+  top: 10px; /* الموضع من الأعلى */
+  left: 10px; /* الموضع من اليسار */
+  width: 50px; /* عرض الزر */
+  height: 50px; /* ارتفاع الزر */
+  border: 2px solid; /* حدود الزر - اللون يتم تحديده في ملفات الثيم */
+  border-radius: 50%; /* جعله دائرياً */
+  display: flex; /* استخدام Flexbox لتوسيط الأيقونة */
+  align-items: center; /* توسيط عمودي للأيقونة */
+  justify-content: center; /* توسيط أفقي للأيقونة */
+  font-size: 1.2rem; /* حجم خط الأيقونة */
+  cursor: move; /* تغيير شكل المؤشر إلى حركة */
+  z-index: 5; /* جعله يظهر فوق الصورة */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+  box-shadow: 0 0 15px; /* ظل حول الزر - اللون يتم تحديده في ملفات الثيم */
+  backdrop-filter: blur(5px); /* تطبيق تأثير ضبابي على الخلفية */
+  /* الخلفية واللون يتم تحديدهما في ملفات الثيم */
+}
+
+/* .draggable-video-btn:hover: عند تمرير المؤشر فوق زر الفيديو */
+.draggable-video-btn:hover {
+  transform: scale(1.1); /* تكبير الزر قليلاً */
+  box-shadow: 0 0 25px; /* زيادة حجم الظل */
+}
+
+/* .project-card .draggable-video-btn: التأكد من أن الزر يبقى فوق الصورة */
+.project-card .draggable-video-btn {
+  top: 10px; /* الموضع من الأعلى */
+  left: 10px; /* الموضع من اليسار */
+}
+
+/* .projects-empty: رسالة عدم وجود مشاريع */
+.projects-empty {
+  display: none; /* مخفي مبدئياً */
+  text-align: center; /* توسيط النص */
+  color: #CCCCCC; /* لون رمادي فاتح */
+}
+
+/* ================================ */
+/* Contact Section                  */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط قسم التواصل.
+*/
+.contact-form-wrapper {
+  max-width: 700px; /* أقصى عرض للحاوية */
+  margin: 0 auto; /* توسيط الحاوية أفقياً */
+  padding: var(--space-xl); /* مسافة داخلية كبيرة */
+  border-radius: var(--border-radius-lg); /* زوايا مستديرة */
+  border: 1px solid; /* حدود الحاوية - اللون يتم تحديده في ملفات الثيم */
+  box-shadow: var(--shadow-sm); /* ظل خفيف */
+  /* الخلفية يتم تحديدها في ملفات الثيم */
+}
+
+/* .form-group: مجموعة حقل النموذج (label + input/textarea) */
+.form-group {
+  margin-bottom: var(--space-lg); /* مسافة سفلية بين المجموعات */
+}
+
+/* .form-group label: تسمية حقل النموذج */
+.form-group label {
+  display: block; /* عرض كـ block ليأخذ سطرًا كاملاً */
+  margin-bottom: var(--space-xs); /* مسافة سفلية صغيرة */
+  font-size: var(--font-size-md); /* حجم الخط */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .form-group input, .form-group textarea: حقول الإدخال ومساحة النص */
+.form-group input,
+.form-group textarea {
+  width: 100%; /* عرض كامل */
+  padding: 12px 16px; /* مسافة داخلية */
+  border: 1px solid; /* حدود الحقل - اللون يتم تحديده في ملفات الثيم */
+  border-radius: var(--border-radius-sm); /* زوايا مستديرة صغيرة */
+  font-family: var(--font-main); /* تطبيق الخط الأساسي */
+  font-size: var(--font-size-md); /* حجم الخط */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+  backdrop-filter: blur(5px); /* تطبيق تأثير ضبابي على الخلفية */
+  /* الخلفية واللون يتم تحديدهما في ملفات الثيم */
+}
+
+/* .form-group input:focus, .form-group textarea:focus: عند التركيز على حقل الإدخال */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none; /* إزالة الإطار الافتراضي عند التركيز */
+  border-color: var(--accent-teal); /* تغيير لون الحدود - اللون يتم تحديده في ملفات الثيم */
+  box-shadow: 0 0 0 3px; /* إضافة ظل حول الحقل - اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .form-group textarea: مساحة النص */
+.form-group textarea {
+  resize: vertical; /* السماح بتغيير حجم مساحة النص عمودياً فقط */
+  min-height: 120px; /* أدنى ارتفاع لمساحة النص */
+}
+
+/* .send-options: خيارات الإرسال (أزرار الإرسال) */
+.send-options {
+  display: flex; /* استخدام Flexbox لتنظيم الأزرار */
+  gap: 1rem; /* مسافة بين الأزرار */
+  margin-top: var(--space-lg); /* مسافة علوية */
+  justify-content: center; /* توسيط الأزرار أفقياً */
+}
+
+/* .btn-email, .btn-whatsapp: أزرار الإرسال عبر البريد الإلكتروني وواتساب */
+.btn-email,
+.btn-whatsapp {
+  border: none; /* إزالة الحدود */
+  box-shadow: 0 4px 15px; /* ظل حول الزر - اللون يتم تحديده في ملفات الثيم */
+  transition: all 0.3s ease; /* انتقال سلس عند التفاعل */
+  font-weight: 600; /* وزن الخط */
+  /* الألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .btn-email:hover, .btn-whatsapp:hover: عند تمرير المؤشر فوق أزرار الإرسال */
+.btn-email:hover,
+.btn-whatsapp:hover {
+  transform: translateY(-4px); /* رفع الزر قليلاً */
+  box-shadow: 0 8px 25px; /* زيادة حجم الظل */
+}
+
+/* .motivational-message: رسالة تحفيزية في قسم التواصل */
+.motivational-message {
+  margin-top: var(--space-xl); /* مسافة علوية كبيرة */
+  text-align: center; /* توسيط النص */
+  font-style: italic; /* جعل النص مائلاً */
+  padding: var(--space-md); /* مسافة داخلية */
+  border-top: 1px dashed; /* حدود علوية متقطعة - اللون يتم تحديده في ملفات الثيم */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .social-links-contact: روابط التواصل الاجتماعي في قسم التواصل */
+.social-links-contact {
+  margin-top: var(--space-xl); /* مسافة علوية كبيرة */
+  display: flex; /* استخدام Flexbox لتنظيم الروابط */
+  flex-wrap: wrap; /* السماح للروابط بالانتقال إلى سطر جديد */
+  gap: 1rem; /* مسافة بين الروابط */
+  justify-content: center; /* توسيط الروابط أفقياً */
+}
+
+/* .social-links-contact a: رابط أيقونة التواصل الاجتماعي */
+.social-links-contact a {
+  display: flex; /* استخدام Flexbox لتنظيم الأيقونة والنص */
+  align-items: center; /* توسيط عمودي */
+  gap: 0.5rem; /* مسافة بين الأيقونة والنص */
+  font-size: var(--font-size-sm); /* حجم الخط */
+  transition: color var(--transition-fast); /* انتقال سلس عند تغيير اللون */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .file-input: حقل إدخال الملفات (إذا كان موجوداً) */
+.file-input {
+  margin: 1rem 0; /* مسافة علوية وسفلية */
+}
+
+/* .file-input label: تسمية حقل إدخال الملفات */
+.file-input label {
+  display: block; /* عرض كـ block */
+  margin-bottom: 0.5rem; /* مسافة سفلية */
+  font-size: var(--font-size-md); /* حجم الخط */
+}
+
+/* .file-input span: نص إضافي لحقل إدخال الملفات */
+.file-input span {
+  margin-left: 10px; /* مسافة من اليسار */
+  font-size: 0.9rem; /* حجم الخط */
+}
+
+/* ================================ */
+/* Footer Styles                    */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط تذييل الصفحة (Footer).
+*/
+.main-footer {
+  padding: var(--space-2xl) 0 var(--space-xl); /* مسافة داخلية علوية وسفلية */
+  border-top: 1px solid; /* حدود علوية - اللون يتم تحديده في ملفات الثيم */
+  text-align: center; /* توسيط النص */
+  font-size: var(--font-size-sm); /* حجم الخط */
+  position: relative; /* لتحديد موضع العناصر المطلقة داخله */
+  overflow: hidden; /* إخفاء أي محتوى يتجاوز حدود التذييل */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .footer-container: حاوية المحتوى داخل التذييل */
+.footer-container {
+  max-width: var(--container-width); /* أقصى عرض للحاوية */
+  margin: 0 auto; /* توسيط الحاوية أفقياً */
+  padding: 0 2rem; /* مسافة داخلية على الجانبين */
+}
+
+/* .footer-columns: أعمدة التذييل */
+.footer-columns {
+  display: grid; /* استخدام Grid لتنظيم الأعمدة */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* أعمدة متجاوبة */
+  gap: var(--space-xl); /* مسافة بين الأعمدة */
+  margin-bottom: var(--space-xl); /* مسافة سفلية */
+  text-align: left; /* محاذاة النص إلى اليسار */
+}
+
+/* .footer-column h3: عناوين الأعمدة في التذييل */
+.footer-column h3 {
+  font-family: var(--font-heading); /* تطبيق خط العناوين */
+  font-size: var(--font-size-lg); /* حجم الخط */
+  margin-bottom: var(--space-md); /* مسافة سفلية */
+  position: relative; /* لتحديد موضع العنصر الزائف (::after) */
+  padding-bottom: 8px; /* مسافة سفلية للعنوان */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .footer-column h3::after: خط تحت عناوين الأعمدة */
+.footer-column h3::after {
+  content: ''; /* محتوى فارغ */
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة للعنوان */
+  left: 0; /* الموضع من اليسار */
+  bottom: 0; /* الموضع من الأسفل */
+  width: 50px; /* عرض الخط */
+  height: 2px; /* ارتفاع الخط */
+  border-radius: 1px; /* زوايا مستديرة */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .footer-about .footer-logo: شعار الموقع في قسم "حول" في التذييل */
+.footer-about .footer-logo {
+  width: 100px; /* عرض الشعار */
+  height: 100px; /* ارتفاع الشعار */
+  border-radius: var(--border-radius-circle); /* جعله دائرياً */
+  border: 3px solid; /* حدود الشعار - اللون يتم تحديده في ملفات الثيم */
+  box-shadow: 0 0 20px; /* ظل حول الشعار - اللون يتم تحديده في ملفات الثيم */
+  margin-bottom: var(--space-sm); /* مسافة سفلية */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+}
+
+/* .footer-about .footer-logo:hover: عند تمرير المؤشر فوق الشعار في التذييل */
+.footer-about .footer-logo:hover {
+  transform: scale(1.1) rotate(360deg); /* تكبير وتدوير الشعار قليلاً */
+  box-shadow: 0 0 35px; /* زيادة حجم الظل */
+}
+
+/* .footer-about p: فقرة الوصف في قسم "حول" في التذييل */
+.footer-about p {
+  font-size: var(--font-size-sm); /* حجم الخط */
+  line-height: 1.6; /* ارتفاع السطر */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .footer-nav ul: قائمة الروابط في قسم التنقل السريع في التذييل */
+.footer-nav ul {
+  list-style: none; /* إزالة النقاط الافتراضية */
+  padding: 0; /* إزالة المسافة الداخلية */
+  margin: 0; /* إزالة الهوامش الخارجية */
+}
+
+/* .footer-nav li: عنصر القائمة في قسم التنقل السريع */
+.footer-nav li {
+  margin-bottom: 10px; /* مسافة سفلية بين العناصر */
+}
+
+/* .footer-nav .footer-link: رابط في قسم التنقل السريع */
+.footer-nav .footer-link {
+  font-size: var(--font-size-md); /* حجم الخط */
+  position: relative; /* لتحديد موضع العنصر الزائف (::after) */
+  display: inline-block; /* جعله عنصراً داخلياً يمكن تطبيق العرض والارتفاع عليه */
+  padding-bottom: 2px; /* مسافة سفلية للرابط */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .footer-nav .footer-link::after: خط تحت الروابط في قسم التنقل السريع */
+.footer-nav .footer-link::after {
+  content: ''; /* محتوى فارغ */
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة للرابط */
+  left: 0; /* الموضع من اليسار */
+  bottom: 0; /* الموضع من الأسفل */
+  width: 0; /* عرض مبدئي صفر (مخفي) */
+  height: 1px; /* ارتفاع الخط */
+  transition: var(--transition-fast); /* انتقال سلس عند ظهور الخط */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .footer-nav .footer-link:hover: عند تمرير المؤشر فوق الرابط */
+.footer-nav .footer-link:hover {
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .footer-nav .footer-link:hover::after: عند تمرير المؤشر فوق الرابط */
+.footer-nav .footer-link:hover::after {
+  width: 100%; /* إظهار الخط بعرض كامل */
+}
+
+/* .social-links-list: قائمة روابط التواصل الاجتماعي في التذييل */
+.social-links-list {
+  list-style: none; /* إزالة النقاط الافتراضية */
+  padding: 0; /* إزالة المسافة الداخلية */
+  margin: 0; /* إزالة الهوامش الخارجية */
+  display: flex; /* استخدام Flexbox لتنظيم الروابط */
+  flex-direction: column; /* ترتيب الروابط عمودياً */
+  gap: 12px; /* مسافة بين الروابط */
+}
+
+/* .social-links-list li a: رابط أيقونة التواصل الاجتماعي في التذييل */
+.social-links-list li a {
+  display: inline-flex; /* عرض كـ inline-flex لتنظيم الأيقونة والنص */
+  align-items: center; /* توسيط عمودي */
+  gap: 10px; /* مسافة بين الأيقونة والنص */
+  font-size: var(--font-size-md); /* حجم الخط */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+  padding: 5px 0; /* مسافة داخلية علوية وسفلية */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .social-links-list li a:hover: عند تمرير المؤشر فوق رابط التواصل الاجتماعي */
+.social-links-list li a:hover {
+  transform: translateX(5px); /* تحريك الرابط قليلاً إلى اليمين */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .social-links-list li a .fab: أيقونة Font Awesome في روابط التواصل الاجتماعي */
+.social-links-list li a .fab {
+  font-size: var(--font-size-xl); /* حجم الأيقونة */
+  width: 25px; /* عرض الأيقونة */
+  text-align: center; /* توسيط الأيقونة */
+}
+
+/* .social-links-list li a span: نص رابط التواصل الاجتماعي */
+.social-links-list li a span {
+  font-weight: 500; /* وزن الخط */
+}
+
+/* .footer-bottom: قسم حقوق النشر في التذييل */
+.footer-bottom {
+  margin-top: var(--space-xl); /* مسافة علوية كبيرة */
+  padding-top: var(--space-md); /* مسافة داخلية علوية */
+  border-top: 1px dashed; /* حدود علوية متقطعة - اللون يتم تحديده في ملفات الثيم */
+  font-size: var(--font-size-sm); /* حجم الخط */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* ================================ */
+/* Language Switcher                */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط زر تبديل اللغة وقائمة اللغات.
+*/
+.language-switcher {
+  position: fixed; /* تثبيت الزر في مكانه */
+  bottom: 30px; /* الموضع من الأسفل */
+  right: 30px; /* الموضع من اليمين */
+  width: 50px; /* عرض الزر */
+  height: 50px; /* ارتفاع الزر */
+  border: 2px solid; /* حدود الزر - اللون يتم تحديده في ملفات الثيم */
+  border-radius: 50%; /* جعله دائرياً */
+  display: flex; /* استخدام Flexbox لتوسيط الأيقونة */
+  align-items: center; /* توسيط عمودي للأيقونة */
+  justify-content: center; /* توسيط أفقي للأيقونة */
+  font-size: 1.3rem; /* حجم خط الأيقونة */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  box-shadow: 0 0 20px; /* ظل حول الزر - اللون يتم تحديده في ملفات الثيم */
+  z-index: 1000; /* جعله يظهر فوق معظم العناصر */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+  /* الخلفية واللون يتم تحديدهما في ملفات الثيم */
+}
+
+/* .language-switcher:hover: عند تمرير المؤشر فوق زر تبديل اللغة */
+.language-switcher:hover {
+  transform: scale(1.1); /* تكبير الزر قليلاً */
+}
+
+/* .language-menu: قائمة اللغات */
+.language-menu {
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة لـ .language-switcher */
+  bottom: 60px; /* الموضع من الأسفل (فوق الزر) */
+  right: 0; /* الموضع من اليمين */
+  border: 1px solid; /* حدود القائمة - اللون يتم تحديده في ملفات الثيم */
+  border-radius: 12px; /* زوايا مستديرة */
+  min-width: 120px; /* أدنى عرض للقائمة */
+  overflow: hidden; /* إخفاء أي محتوى يتجاوز حدود القائمة */
+  box-shadow: var(--shadow-md); /* ظل متوسط */
+  z-index: 1001; /* جعله يظهر فوق زر تبديل اللغة */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .language-menu li: عنصر القائمة في قائمة اللغات */
+.language-menu li {
+  padding: 12px 16px; /* مسافة داخلية */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  transition: var(--transition-fast); /* انتقال سلس عند التفاعل */
+  font-size: 0.95rem; /* حجم الخط */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .language-menu li.active: عنصر اللغة النشط */
+.language-menu li.active {
+  font-weight: 600; /* وزن خط عريض */
+  position: relative; /* لتحديد موضع علامة الصح */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .language-menu li.active::after: علامة الصح للغة النشطة */
+.language-menu li.active::after {
+  content: '✔'; /* محتوى علامة الصح */
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة للعنصر */
+  right: 16px; /* الموضع من اليمين */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* ================================ */
+/* Modals & Toasts                  */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط النوافذ المنبثقة (Modals) والرسائل المؤقتة (Toasts).
+*/
+
+/* .modal: النافذة المنبثقة العامة */
+.modal {
+  position: fixed; /* تثبيت النافذة في مكانها */
+  top: 0; /* من الأعلى */
+  left: 0; /* من اليسار */
+  width: 100%; /* عرض كامل */
+  height: 100%; /* ارتفاع كامل */
+  display: flex; /* استخدام Flexbox لتوسيط المحتوى */
+  align-items: center; /* توسيط عمودي */
+  justify-content: center; /* توسيط أفقي */
+  z-index: 1500; /* جعله يظهر فوق معظم العناصر */
+  opacity: 0; /* إخفاء مبدئياً */
+  visibility: hidden; /* إخفاء النافذة تماماً */
+  transition: all 0.4s; /* انتقال سلس عند الظهور */
+  /* الخلفية يتم تحديدها في ملفات الثيم */
+}
+
+/* .modal[hidden]: إخفاء النافذة عند وجود خاصية hidden */
+.modal[hidden] {
+  display: none;
+}
+
+/* .modal.show: إظهار النافذة */
+.modal.show {
+  opacity: 1; /* إظهار النافذة */
+  visibility: visible; /* جعلها مرئية */
+}
+
+/* .modal-content: محتوى النافذة المنبثقة */
+.modal-content {
+  padding: var(--space-xl); /* مسافة داخلية كبيرة */
+  border: 1px solid; /* حدود المحتوى - اللون يتم تحديده في ملفات الثيم */
+  border-radius: var(--border-radius-lg); /* زوايا مستديرة */
+  max-width: 500px; /* أقصى عرض للمحتوى */
+  width: 90%; /* عرض 90% من الشاشة */
+  text-align: center; /* توسيط النص */
+  box-shadow: var(--shadow-lg); /* ظل كبير */
+  position: relative; /* لتحديد موضع العناصر المطلقة داخله */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .modal-content h4: عنوان داخل النافذة المنبثقة */
+.modal-content h4 {
+  margin-bottom: var(--space-md); /* مسافة سفلية */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .modal-content .btn: زر داخل النافذة المنبثقة */
+.modal-content .btn {
+  margin-top: var(--space-md); /* مسافة علوية */
+  width: auto; /* عرض تلقائي */
+  padding: 10px 24px; /* مسافة داخلية */
+}
+
+/* #password-modal: نافذة إدخال كلمة المرور */
+#password-modal {
+  /* نفس أنماط .modal */
+}
+
+/* #password-modal .modal-content: محتوى نافذة كلمة المرور */
+#password-modal .modal-content {
+  padding: var(--space-xl); /* مسافة داخلية كبيرة */
+  border: 2px solid; /* حدود سميكة - اللون يتم تحديده في ملفات الثيم */
+  border-radius: var(--border-radius-lg); /* زوايا مستديرة */
+  max-width: 400px; /* أقصى عرض */
+  width: 90%; /* عرض 90% من الشاشة */
+  text-align: center; /* توسيط النص */
+  box-shadow: var(--shadow-lg); /* ظل كبير */
+  position: relative; /* لتحديد موضع العناصر المطلقة داخله */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* #password-modal h4: عنوان داخل نافذة كلمة المرور */
+#password-modal h4 {
+  margin-bottom: var(--space-sm); /* مسافة سفلية */
+}
+
+/* #password-modal p: فقرة داخل نافذة كلمة المرور */
+#password-modal p {
+  margin-bottom: var(--space-md); /* مسافة سفلية */
+  font-size: var(--font-size-sm); /* حجم الخط */
+}
+
+/* #password-modal input: حقل إدخال كلمة المرور */
+#password-modal input {
+  width: 100%; /* عرض كامل */
+  padding: 12px; /* مسافة داخلية */
+  border: 1px solid; /* حدود الحقل - اللون يتم تحديده في ملفات الثيم */
+  border-radius: 6px; /* زوايا مستديرة */
+  font-size: var(--font-size-md); /* حجم الخط */
+  margin-bottom: 10px; /* مسافة سفلية */
+  /* الخلفية واللون يتم تحديدهما في ملفات الثيم */
+}
+
+/* .modal-buttons: أزرار داخل النافذة المنبثقة */
+.modal-buttons {
+  display: flex; /* استخدام Flexbox لتنظيم الأزرار */
+  gap: 1rem; /* مسافة بين الأزرار */
+  justify-content: center; /* توسيط الأزرار أفقياً */
+  margin-top: var(--space-md); /* مسافة علوية */
+}
+
+/* .btn-secondary: زر ثانوي */
+.btn-secondary {
+  background: transparent; /* خلفية شفافة */
+  border: 1px solid; /* حدود الزر - اللون يتم تحديده في ملفات الثيم */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .btn-secondary:hover: عند تمرير المؤشر فوق الزر الثانوي */
+.btn-secondary:hover {
+  border-color: var(--accent-teal); /* تغيير لون الحدود - اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .admin-panel: لوحة التحكم الإدارية */
+.admin-panel {
+  position: fixed; /* تثبيت اللوحة في مكانها */
+  top: 50%; /* الموضع من الأعلى (للتوسيط) */
+  left: 50%; /* الموضع من اليسار (للتوسيط) */
+  transform: translate(-50%, -50%); /* توسيط دقيق باستخدام التحويل */
+  width: 90%; /* عرض 90% من الشاشة */
+  max-width: 800px; /* أقصى عرض */
+  border: 2px solid; /* حدود سميكة - اللون يتم تحديده في ملفات الثيم */
+  border-radius: var(--border-radius-lg); /* زوايا مستديرة */
+  box-shadow: var(--shadow-lg); /* ظل كبير */
+  z-index: 2000; /* جعله يظهر فوق معظم العناصر */
+  overflow: auto; /* تفعيل التمرير إذا كان المحتوى أكبر من اللوحة */
+  max-height: 90vh; /* أقصى ارتفاع 90% من ارتفاع الشاشة */
+  display: none; /* مخفي مبدئياً */
+  animation: fadeIn 0.4s; /* تطبيق تأثير fadeIn عند الظهور */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .admin-header: رأس لوحة التحكم الإدارية */
+.admin-header {
+  padding: 16px 20px; /* مسافة داخلية */
+  display: flex; /* استخدام Flexbox لتنظيم العناصر */
+  justify-content: space-between; /* توزيع العناصر مع مسافة بينها */
+  align-items: center; /* توسيط عمودي */
+  border-bottom: 1px solid; /* حدود سفلية - اللون يتم تحديده في ملفات الثيم */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .admin-header h3: عنوان رأس لوحة التحكم */
+.admin-header h3 {
+  margin: 0; /* إزالة الهوامش الافتراضية */
+  font-size: var(--font-size-lg); /* حجم الخط */
+}
+
+/* .btn-close: زر الإغلاق في لوحة التحكم */
+.btn-close {
+  background: none; /* خلفية شفافة */
+  border: none; /* إزالة الحدود */
+  font-size: 1.5rem; /* حجم خط الأيقونة */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  width: 30px; /* عرض الزر */
+  height: 30px; /* ارتفاع الزر */
+  display: flex; /* استخدام Flexbox لتوسيط الأيقونة */
+  align-items: center; /* توسيط عمودي */
+  justify-content: center; /* توسيط أفقي */
+  /* اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .admin-controls-grid: شبكة عناصر التحكم في لوحة التحكم */
+.admin-controls-grid {
+  display: grid; /* استخدام Grid لتنظيم العناصر */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* أعمدة متجاوبة */
+  gap: 1rem; /* مسافة بين العناصر */
+  padding: var(--space-lg); /* مسافة داخلية */
+  text-align: center; /* توسيط النص */
+}
+
+/* .admin-btn: زر في لوحة التحكم */
+.admin-btn {
+  border: 1px solid; /* حدود الزر - اللون يتم تحديده في ملفات الثيم */
+  padding: 1rem; /* مسافة داخلية */
+  border-radius: 12px; /* زوايا مستديرة */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  transition: all 0.3s ease; /* انتقال سلس عند التفاعل */
+  font-size: 0.95rem; /* حجم الخط */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .admin-btn:hover: عند تمرير المؤشر فوق زر لوحة التحكم */
+.admin-btn:hover {
+  transform: translateY(-3px); /* رفع الزر قليلاً */
+  box-shadow: 0 5px 15px; /* ظل حول الزر - اللون يتم تحديده في ملفات الثيم */
+}
+
+/* .admin-btn.full: زر يأخذ عرضاً كاملاً في الشبكة */
+.admin-btn.full {
+  grid-column: span 3; /* يمتد على 3 أعمدة */
+}
+
+/* .delete-list: قائمة العناصر القابلة للحذف */
+.delete-list {
+  max-height: 300px; /* أقصى ارتفاع للقائمة */
+  overflow-y: auto; /* تفعيل التمرير العمودي إذا كان المحتوى أكبر */
+  margin-top: 1rem; /* مسافة علوية */
+  padding: 1rem; /* مسافة داخلية */
+  border-radius: 12px; /* زوايا مستديرة */
+  /* الخلفية يتم تحديدها في ملفات الثيم */
+}
+
+/* .delete-item: عنصر فردي في قائمة الحذف */
+.delete-item {
+  border: 1px solid; /* حدود العنصر - اللون يتم تحديده في ملفات الثيم */
+  border-radius: var(--border-radius-md); /* زوايا مستديرة */
+  padding: 1rem; /* مسافة داخلية */
+  margin-bottom: 0.5rem; /* مسافة سفلية */
+  display: flex; /* استخدام Flexbox لتنظيم المحتوى */
+  justify-content: space-between; /* توزيع المحتوى مع مسافة بينه */
+  align-items: center; /* توسيط عمودي */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .delete-item button: زر الحذف داخل العنصر */
+.delete-item button {
+  border: none; /* إزالة الحدود */
+  padding: 0.5rem 1rem; /* مسافة داخلية */
+  border-radius: var(--border-radius-sm); /* زوايا مستديرة صغيرة */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  font-size: 0.9rem; /* حجم الخط */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .toast: رسالة التنبيه المؤقتة */
+.toast {
+  position: fixed; /* تثبيت الرسالة في مكانها */
+  top: 30px; /* الموضع من الأعلى */
+  left: 50%; /* الموضع من اليسار (للتوسيط) */
+  transform: translateX(-50%); /* توسيط أفقي دقيق */
+  padding: 16px 24px; /* مسافة داخلية */
+  border-radius: 6px; /* زوايا مستديرة */
+  box-shadow: var(--shadow-md); /* ظل متوسط */
+  z-index: 3000; /* جعله يظهر فوق جميع العناصر */
+  opacity: 0; /* إخفاء مبدئياً */
+  transform: translate(-50%, -20px); /* تحريك الرسالة قليلاً للأعلى مبدئياً */
+  transition: all 0.4s ease; /* انتقال سلس عند الظهور */
+  font-weight: 600; /* وزن خط عريض */
+  pointer-events: none; /* منع التفاعل مع الرسالة */
+  white-space: nowrap; /* منع التفاف النص */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .toast.show: إظهار رسالة التنبيه */
+.toast.show {
+  opacity: 1; /* إظهار الرسالة */
+  transform: translate(-50%, 0); /* إعادة الرسالة إلى موضعها الأصلي */
+}
+
+/* .video-modal: النافذة المنبثقة للفيديو */
+.video-modal {
+  position: fixed; /* تثبيت النافذة في مكانها */
+  top: 0; /* من الأعلى */
+  left: 0; /* من اليسار */
+  width: 100%; /* عرض كامل */
+  height: 100%; /* ارتفاع كامل */
+  display: flex; /* استخدام Flexbox لتوسيط المحتوى */
+  align-items: center; /* توسيط عمودي */
+  justify-content: center; /* توسيط أفقي */
+  z-index: 3000; /* جعله يظهر فوق جميع العناصر */
+  opacity: 0; /* إخفاء مبدئياً */
+  visibility: hidden; /* إخفاء النافذة تماماً */
+  transition: all 0.4s ease; /* انتقال سلس عند الظهور */
+  /* الخلفية يتم تحديدها في ملفات الثيم */
+}
+
+/* .video-modal.show: إظهار نافذة الفيديو */
+.video-modal.show {
+  opacity: 1; /* إظهار النافذة */
+  visibility: visible; /* جعلها مرئية */
+}
+
+/* .video-modal-content: محتوى نافذة الفيديو */
+.video-modal-content {
+  position: relative; /* لتحديد موضع زر الإغلاق */
+  max-width: 800px; /* أقصى عرض */
+  width: 90%; /* عرض 90% من الشاشة */
+  aspect-ratio: 16 / 9; /* نسبة عرض إلى ارتفاع 16:9 */
+  border: 2px solid; /* حدود سميكة - اللون يتم تحديده في ملفات الثيم */
+  border-radius: var(--border-radius-md); /* زوايا مستديرة */
+  overflow: hidden; /* إخفاء أي محتوى يتجاوز الحدود */
+  box-shadow: var(--shadow-lg); /* ظل كبير */
+  /* الخلفية يتم تحديدها في ملفات الثيم */
+}
+
+/* .video-modal-close: زر إغلاق نافذة الفيديو */
+.video-modal-close {
+  position: absolute; /* تحديد الموضع بشكل مطلق بالنسبة لـ .video-modal-content */
+  top: 10px; /* الموضع من الأعلى */
+  right: 10px; /* الموضع من اليمين */
+  border: none; /* إزالة الحدود */
+  width: 40px; /* عرض الزر */
+  height: 40px; /* ارتفاع الزر */
+  border-radius: 50%; /* جعله دائرياً */
+  font-size: 1.5rem; /* حجم خط الأيقونة */
+  cursor: pointer; /* تغيير شكل المؤشر إلى يد */
+  z-index: 10; /* جعله يظهر فوق الفيديو */
+  transition: var(--transition-all); /* انتقال سلس عند التفاعل */
+  display: flex; /* استخدام Flexbox لتوسيط الأيقونة */
+  align-items: center; /* توسيط عمودي */
+  justify-content: center; /* توسيط أفقي */
+  /* الخلفية والألوان يتم تحديدها في ملفات الثيم */
+}
+
+/* .video-modal-close:hover: عند تمرير المؤشر فوق زر الإغلاق */
+.video-modal-close:hover {
+  transform: scale(1.1); /* تكبير الزر قليلاً */
+}
+
+/* #video-player: مشغل الفيديو */
+#video-player {
+  width: 100%; /* عرض كامل */
+  height: 100%; /* ارتفاع كامل */
+  object-fit: cover; /* تغطية المساحة المتاحة مع الحفاظ على نسبة الأبعاد */
+}
+
+/* ================================ */
+/* Scrollbar Styles                 */
+/* ================================ */
+/*
+  هذا القسم يحدد أنماط شريط التمرير (Scrollbar).
+*/
+::-webkit-scrollbar {
+  width: 10px; /* عرض شريط التمرير */
+}
+
+::-webkit-scrollbar-track {
+  /* لون مسار شريط التمرير - يتم تحديده في ملفات الثيم */
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px; /* زوايا مستديرة لمقبض شريط التمرير */
+  /* لون مقبض شريط التمرير - يتم تحديده في ملفات الثيم */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /* لون مقبض شريط التمرير عند التمرير فوقه - يتم تحديده في ملفات الثيم */
+}

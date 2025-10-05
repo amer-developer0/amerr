@@ -1,0 +1,526 @@
+/* ========================================
+   🎨 Color Palette - Amer Developer Portfolio
+   Generated for Light and Dark Mode Separation
+   ======================================== */
+
+/* Root Color Variables */
+:root {
+    /* Primary Backgrounds */
+    --primary-dark: #000033; /* Main dark background color */
+    --primary-darker: #000022; /* Even darker background for elements like tooltips, modals, language menu */
+  
+    /* Accent Colors (Teal/Cyan) */
+    --accent-teal: #00FFFF; /* Main accent color for highlights, active states, borders, text */
+    --accent-teal-light: #33FFFF; /* Lighter shade of accent teal for hover states */
+    --accent-teal-glow: rgba(0, 255, 255, 0.3); /* Glow effect for accent elements (e.g., avatar, shadows) */
+  
+    /* Text Colors */
+    --text-white: #FFFFFF; /* Main white text color */
+    --text-gray: #CCCCCC; /* Secondary gray text color for paragraphs, motivational messages */
+    --text-gray-light: #AAAAAA; /* Lighter gray text color for less prominent text (e.g., project descriptions, file input span) */
+  
+    /* Border Colors */
+    --border-light: rgba(0, 255, 255, 0.2); /* Light border color, often with transparency, derived from accent teal */
+  
+    /* Status Colors */
+    --success: #4CAF50; /* Color for success messages/states */
+    --error: #FF5555; /* Color for error messages/states */
+  
+    /* Specific Element Colors */
+    --order-btn-background: #FFD700; /* Background color for the "Order Service" button (Gold) */
+    --order-btn-color: #000033; /* Text color for the "Order Service" button (Primary Dark) */
+    --order-btn-hover-background: #FFC400; /* Hover background color for the "Order Service" button (Darker Gold) */
+    --email-whatsapp-btn-gradient-start: #00FFFF; /* Start color for email/whatsapp button gradient */
+    --email-whatsapp-btn-gradient-end: #33FFFF; /* End color for email/whatsapp button gradient */
+    --email-whatsapp-btn-color: #000033; /* Text color for email/whatsapp buttons */
+    --email-whatsapp-btn-hover-gradient-start: #33FFFF; /* Start color for email/whatsapp button hover gradient */
+    --email-whatsapp-btn-hover-gradient-end: #00FFFF; /* End color for email/whatsapp button hover gradient */
+  }
+  
+  /* ========================================
+     Specific Element Color Declarations
+     (Using direct values or root variables)
+     ======================================== */
+  
+  /* Loading Screen */
+  .loading-screen {
+    background: #000033; /* Background of the loading screen */
+  }
+  
+  .loading-logo {
+    border: 4px solid #00FFFF; /* Border of the loading logo */
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.4); /* Glow shadow of the loading logo */
+  }
+  
+  /* Body */
+  body {
+    background: #000033; /* Default body background */
+    color: #FFFFFF; /* Default body text color */
+  }
+  
+  /* Skip Link */
+  .skip-link {
+    background: var(--accent-teal); /* Background of the skip link */
+    color: var(--primary-dark); /* Text color of the skip link */
+  }
+  
+  /* Typography */
+  h2 {
+    color: var(--accent-teal); /* Color for H2 headings */
+  }
+  
+  h2::after {
+    background: var(--accent-teal); /* Underline color for H2 headings */
+  }
+  
+  p {
+    color: var(--text-gray); /* Color for paragraph text */
+  }
+  
+  a {
+    color: inherit; /* Default link color inherits from parent */
+  }
+  
+  a:hover {
+    color: var(--accent-teal); /* Link hover color */
+  }
+  
+  strong {
+    color: var(--accent-teal); /* Strong tag text color */
+  }
+  
+  /* Highlight */
+  .highlight {
+    color: var(--accent-teal); /* Highlighted text color */
+  }
+  
+  .highlight::after {
+    background: var(--accent-teal-glow); /* Background glow for highlighted text */
+  }
+  
+  /* Typing Effect */
+  .typing-text {
+    border-right: 2px solid var(--accent-teal); /* Caret color for typing effect */
+  }
+  
+  @keyframes blink-caret {
+    50% { border-color: var(--accent-teal); } /* Blinking caret color */
+  }
+  
+  /* Hero Section */
+  .hero-subtitle {
+    color: var(--accent-teal); /* Subtitle color in hero section */
+  }
+  
+  .hero-paragraph {
+    color: var(--text-gray); /* Paragraph color in hero section */
+  }
+  
+  /* Buttons */
+  .btn {
+    background: var(--accent-teal); /* Default button background */
+    color: var(--primary-dark); /* Default button text color */
+  }
+  
+  .btn:hover {
+    background: var(--accent-teal-light); /* Default button hover background */
+    color: var(--primary-dark); /* Default button hover text color */
+  }
+  
+  /* Social Icons */
+  .social-icons-home a {
+    color: var(--text-white); /* Social icon color */
+  }
+  
+  .social-icons-home a:hover {
+    color: var(--accent-teal); /* Social icon hover color */
+  }
+  
+  /* Avatar */
+  .avatar-img {
+    border: 4px solid var(--accent-teal); /* Border of the avatar image */
+    box-shadow: 0 0 40px var(--accent-teal-glow); /* Glow shadow of the avatar image */
+  }
+  
+  .glow-ring {
+    border: 2px solid var(--accent-teal); /* Border of the glow ring around avatar */
+  }
+  
+  /* Header */
+  .main-header {
+    background: rgba(0, 0, 51, 0.95); /* Background of the main header */
+    border-bottom: 1px solid var(--border-light); /* Bottom border of the main header */
+  }
+  
+  .logo img {
+    box-shadow: 0 0 20px var(--accent-teal-glow); /* Shadow for the logo image */
+    border: 2px solid var(--accent-teal); /* Border for the logo image */
+  }
+  
+  .logo img:hover {
+    box-shadow: 0 0 30px var(--accent-teal-glow); /* Hover shadow for the logo image */
+  }
+  
+  .nav-link::after {
+    background: var(--accent-teal); /* Underline color for navigation links */
+  }
+  
+  .nav-link.active {
+    color: var(--accent-teal); /* Active navigation link color */
+  }
+  
+  /* Order Service Button */
+  #order-service-btn {
+    background: var(--order-btn-background); /* Background of the order service button */
+    color: var(--order-btn-color); /* Text color of the order service button */
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); /* Shadow of the order service button */
+  }
+  
+  #order-service-btn:hover {
+    background: var(--order-btn-hover-background); /* Hover background of the order service button */
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4); /* Hover shadow of the order service button */
+  }
+  
+  /* Skill, Tool, Service Cards */
+  .skill-card,
+  .tool-card,
+  .service-card {
+    background: rgba(0, 0, 51, 0.7); /* Background of skill/tool/service cards */
+    border: 1px solid var(--border-light); /* Border of skill/tool/service cards */
+  }
+  
+  .skill-card:hover,
+  .tool-card:hover,
+  .service-card:hover {
+    border-color: var(--accent-teal); /* Border color on hover for cards */
+    box-shadow: var(--shadow-md); /* Shadow on hover for cards */
+  }
+  
+  .skill-card h3,
+  .tool-card h3,
+  .service-card h3 {
+    color: var(--accent-teal); /* Heading color inside cards */
+  }
+  
+  .skill-card p,
+  .tool-card p,
+  .service-card p {
+    color: var(--text-gray-light); /* Paragraph color inside cards */
+  }
+  
+  /* Service Card - Selected State */
+  .service-card.selectable.selected {
+    border: 3px solid var(--accent-teal); /* Border color for selected service card */
+    box-shadow: 0 0 20px var(--accent-teal-glow), 0 0 0 3px var(--accent-teal); /* Shadow for selected service card */
+    background: rgba(0, 255, 255, 0.1); /* Background for selected service card */
+  }
+  
+  /* Tooltip */
+  .tooltip {
+    background: var(--primary-darker); /* Background of the tooltip */
+    color: var(--text-white); /* Text color of the tooltip */
+    border: 1px solid var(--accent-teal); /* Border of the tooltip */
+  }
+  
+  .tooltip::before {
+    border-bottom: 8px solid var(--accent-teal); /* Arrow color of the tooltip */
+  }
+  
+  /* Project Cards */
+  .project-card {
+    background: rgba(0, 0, 51, 0.7); /* Background of project cards */
+    border: 1px solid var(--border-light); /* Border of project cards */
+  }
+  
+  .project-card:hover {
+    border-color: var(--accent-teal); /* Border color on hover for project cards */
+  }
+  
+  .project-content p {
+    color: var(--text-gray-light); /* Paragraph color inside project cards */
+  }
+  
+  /* Contact Form */
+  .contact-form-wrapper {
+    background: rgba(0, 0, 51, 0.7); /* Background of the contact form wrapper */
+    border: 1px solid var(--border-light); /* Border of the contact form wrapper */
+  }
+  
+  .form-group label {
+    color: var(--accent-teal); /* Label color in contact form */
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    background: rgba(255, 255, 255, 0.08); /* Background of form inputs/textareas */
+    border: 1px solid var(--border-light); /* Border of form inputs/textareas */
+    color: var(--text-white); /* Text color in form inputs/textareas */
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent-teal); /* Border color on focus for form inputs/textareas */
+    box-shadow: 0 0 0 3px var(--accent-teal-glow); /* Shadow on focus for form inputs/textareas */
+    background: rgba(0, 255, 255, 0.05); /* Background on focus for form inputs/textareas */
+  }
+  
+  /* Send Options Buttons */
+  .btn-email,
+  .btn-whatsapp {
+    background: linear-gradient(135deg, var(--email-whatsapp-btn-gradient-start), var(--email-whatsapp-btn-gradient-end)); /* Background gradient for email/whatsapp buttons */
+    color: var(--email-whatsapp-btn-color); /* Text color for email/whatsapp buttons */
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3); /* Shadow for email/whatsapp buttons */
+  }
+  
+  .btn-email:hover,
+  .btn-whatsapp:hover {
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4); /* Hover shadow for email/whatsapp buttons */
+    background: linear-gradient(135deg, var(--email-whatsapp-btn-hover-gradient-start), var(--email-whatsapp-btn-hover-gradient-end)); /* Hover background gradient for email/whatsapp buttons */
+  }
+  
+  .motivational-message {
+    color: var(--text-gray); /* Text color for motivational message */
+    border-top: 1px dashed var(--border-light); /* Top border for motivational message */
+  }
+  
+  .social-links-contact a {
+    color: var(--text-gray); /* Social links color in contact section */
+  }
+  
+  .social-links-contact a:hover {
+    color: var(--accent-teal); /* Social links hover color in contact section */
+  }
+  
+  /* File Input */
+  .file-input label {
+    color: var(--accent-teal); /* Label color for file input */
+  }
+  
+  .file-input span {
+    color: var(--text-gray-light); /* Span text color for file input */
+  }
+  
+  /* Footer */
+  .main-footer {
+    background: rgba(0, 0, 51, 0.9); /* Background of the main footer */
+    border-top: 1px solid var(--border-light); /* Top border of the main footer */
+    color: var(--text-gray); /* Text color in the footer */
+  }
+  
+  .main-footer a {
+    color: var(--accent-teal); /* Link color in the footer */
+  }
+  
+  /* Language Switcher */
+  .language-switcher {
+    background: var(--primary-darker); /* Background of the language switcher button */
+    border: 2px solid var(--accent-teal); /* Border of the language switcher button */
+    color: var(--accent-teal); /* Icon color in the language switcher button */
+    box-shadow: 0 0 20px var(--accent-teal-glow); /* Shadow of the language switcher button */
+  }
+  
+  .language-switcher:hover {
+    background: var(--primary-dark); /* Hover background of the language switcher button */
+  }
+  
+  .language-menu {
+    background: var(--primary-darker); /* Background of the language menu */
+    border: 1px solid var(--accent-teal); /* Border of the language menu */
+  }
+  
+  .language-menu li:hover {
+    background: var(--accent-teal-glow); /* Hover background for language menu items */
+    color: var(--accent-teal); /* Hover text color for language menu items */
+  }
+  
+  .language-menu li.active {
+    background: rgba(0, 255, 255, 0.1); /* Background for active language menu item */
+    color: var(--accent-teal); /* Text color for active language menu item */
+  }
+  
+  /* Password Modal */
+  #password-modal {
+    background: rgba(0, 0, 51, 0.95); /* Background overlay for password modal */
+  }
+  
+  #password-modal .modal-content {
+    background: var(--primary-darker); /* Background of password modal content */
+    border: 2px solid var(--accent-teal); /* Border of password modal content */
+  }
+  
+  #password-modal h4 {
+    color: var(--accent-teal); /* Heading color in password modal */
+  }
+  
+  #password-modal p {
+    color: var(--text-gray); /* Paragraph color in password modal */
+  }
+  
+  #password-modal input {
+    background: rgba(255, 255, 255, 0.08); /* Background of input in password modal */
+    border: 1px solid var(--border-light); /* Border of input in password modal */
+    color: var(--text-white); /* Text color of input in password modal */
+  }
+  
+  .btn-secondary {
+    background: transparent; /* Background of secondary buttons */
+    color: var(--text-gray); /* Text color of secondary buttons */
+    border: 1px solid var(--border-light); /* Border of secondary buttons */
+  }
+  
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1); /* Hover background of secondary buttons */
+    border-color: var(--accent-teal); /* Hover border color of secondary buttons */
+  }
+  
+  /* Admin Panel */
+  .admin-panel {
+    background: var(--primary-darker); /* Background of the admin panel */
+    border: 2px solid var(--accent-teal); /* Border of the admin panel */
+  }
+  
+  .admin-header {
+    background: rgba(0, 255, 255, 0.1); /* Background of the admin panel header */
+    border-bottom: 1px solid var(--border-light); /* Bottom border of the admin panel header */
+  }
+  
+  .btn-close {
+    color: var(--text-gray); /* Close button color in admin panel */
+  }
+  
+  .btn-close:hover {
+    color: var(--accent-teal); /* Close button hover color in admin panel */
+  }
+  
+  .admin-btn {
+    background: rgba(0, 255, 255, 0.1); /* Background of admin buttons */
+    border: 1px solid var(--accent-teal); /* Border of admin buttons */
+    color: var(--text-white); /* Text color of admin buttons */
+  }
+  
+  .admin-btn:hover {
+    background: var(--accent-teal); /* Hover background of admin buttons */
+    color: var(--primary-dark); /* Hover text color of admin buttons */
+  }
+  
+  .delete-list {
+    background: rgba(255, 0, 0, 0.05); /* Background of delete list */
+  }
+  
+  .delete-item {
+    background: rgba(255, 0, 0, 0.1); /* Background of delete item */
+    border: 1px solid var(--error); /* Border of delete item */
+  }
+  
+  .delete-item button {
+    background: var(--error); /* Background of delete item button */
+    color: white; /* Text color of delete item button */
+  }
+  
+  .delete-item button:hover {
+    background: #E53935; /* Hover background of delete item button */
+  }
+  
+  /* Modal */
+  .modal {
+    background: rgba(0, 0, 51, 0.9); /* Background overlay for general modals */
+  }
+  
+  .modal-content {
+    background: var(--primary-darker); /* Background of general modal content */
+    border: 1px solid var(--accent-teal); /* Border of general modal content */
+  }
+  
+  .modal-content h4 {
+    color: var(--accent-teal); /* Heading color in general modals */
+  }
+  
+  /* Toast */
+  .toast {
+    background: var(--accent-teal); /* Default background of toast messages */
+    color: var(--primary-dark); /* Default text color of toast messages */
+  }
+  
+  .toast.success {
+    background: #4CAF50; /* Background for success toast messages */
+    color: white; /* Text color for success toast messages */
+  }
+  
+  .toast.error {
+    background: #FF5555; /* Background for error toast messages */
+    color: white; /* Text color for error toast messages */
+  }
+  
+  /* Scrollbar */
+  ::-webkit-scrollbar-track {
+    background: var(--primary-darker); /* Background of scrollbar track */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-teal); /* Color of scrollbar thumb */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-teal-light); /* Hover color of scrollbar thumb */
+  }
+  
+  /* Video Modal */
+  .video-modal {
+    background: rgba(0, 0, 51, 0.95); /* Background overlay for video modal */
+  }
+  
+  .video-modal-content {
+    background: var(--primary-darker); /* Background of video modal content */
+    border: 2px solid var(--accent-teal); /* Border of video modal content */
+  }
+  
+  .video-modal-close {
+    background: var(--primary-dark); /* Background of video modal close button */
+    color: var(--accent-teal); /* Icon color of video modal close button */
+  }
+  
+  .video-modal-close:hover {
+    background: var(--accent-teal); /* Hover background of video modal close button */
+    color: var(--primary-dark); /* Hover icon color of video modal close button */
+  }
+  
+  /* Draggable Video Button */
+  .draggable-video-btn {
+    background: rgba(0, 255, 255, 0.2); /* Background of draggable video button */
+    border: 2px solid var(--accent-teal); /* Border of draggable video button */
+    color: var(--accent-teal); /* Icon color of draggable video button */
+    box-shadow: 0 0 15px var(--accent-teal-glow); /* Shadow of draggable video button */
+  }
+  
+  .draggable-video-btn:hover {
+    background: var(--accent-teal); /* Hover background of draggable video button */
+    color: var(--primary-dark); /* Hover icon color of draggable video button */
+    box-shadow: 0 0 25px var(--accent-teal-glow); /* Hover shadow of draggable video button */
+  }
+
+
+
+  /* ======================
+   Color Variables
+   ====================== */
+
+/* Primary & Accent Colors */
+:root {
+    --primary-darker: #1a1a2e; /* لون أساسي داكن للخلفيات */
+    --accent-teal: #00bcd4; /* لون مميز (أزرق مخضر) للعناوين والروابط */
+    --accent-teal-glow: rgba(0, 189, 212, 0.6); /* توهج للون المميز (أزرق مخضر مع شفافية) */
+  }
+  
+  /* Text Colors */
+  :root {
+    --text-gray: #cccccc; /* لون نص رمادي فاتح */
+    --text-gray-light: #aaaaaa; /* لون نص رمادي أفتح */
+  }
+  
+  /* Border Colors */
+  :root {
+    --border-light: #333333; /* لون حدود فاتح */
+  }
+  
+  /* Other Specific Colors (if any were direct values) */
+  /* لا توجد ألوان مباشرة في هذا الجزء، كلها تستخدم المتغيرات */
